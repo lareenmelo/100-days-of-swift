@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         button3.setImage(UIImage(named: countries[2]), for: .normal)
 
         correctAnswer = Int.random(in: 0...2)
-        title = countries[correctAnswer].uppercased()
+        title = "SCORE: \(score) - \(countries[correctAnswer].uppercased())"
 
     }
     @IBAction func buttonTapped(_ sender: UIButton) {
