@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet var button3: UIButton!
     
     var countries = [String]()
+    var questionsAsked = 0
     var correctAnswer = 0
     var score = 0
     
@@ -47,19 +48,41 @@ class ViewController: UIViewController {
     @IBAction func buttonTapped(_ sender: UIButton) {
         var title: String
         
-        if sender.tag == correctAnswer {
-            title = "Correct"
-            score += 1
+        if questionsAsked <= 2 {
+            if sender.tag == correctAnswer {
+                title = "Correct"
+                score += 1
+                callAlert(title: title, message: "Your score is \(score).")
+
+            } else {
+                title = "Wrong"
+                score -= 1
+                callAlert(title: title, message: "Wrong! That's the flag of \(countries[correctAnswer].uppercased()). Your score is \(score).")
+
+            }
+            
+            questionsAsked += 1
+            
         } else {
-            title = "Wrong"
-            score -= 1
+            callAlert(title: "Game Over", message: "Your score is \(score).")
+            finalizeGame()
         }
-        
-        let ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
-        present(ac, animated: true)
     }
     
 
+    func finalizeGame() {
+        score = 0
+        questionsAsked = 0
+        correctAnswer = 0
+        
+    }
+    
+    func callAlert(title: String, message: String) {
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
+        present(ac, animated: true)
+
+    }
 }
 
+//Wrong! That’s the flag of France
