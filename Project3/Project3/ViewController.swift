@@ -10,13 +10,24 @@ import UIKit
 
 class ViewController: UITableViewController {
     var pictures = [String]()
-//    var imageName = ""
+    
+    
+    @objc func shareTapped() {
+        
+        let items: [Any] = ["This app is great, you should try it!"]
+        
+        let vc = UIActivityViewController(activityItems: [items], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        
+        present(vc, animated: true)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         title = "Storm Viewer"
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
 
         let fm = FileManager.default
         let path = Bundle.main.resourcePath!
@@ -49,7 +60,6 @@ class ViewController: UITableViewController {
             vc.selectedImage = pictures[indexPath.row]
             vc.totalPictures = pictures.count
             vc.selectedPictureNumber = indexPath.row + 1
-//            vc.imageName = pictures[indexPath.row]
             // 3: now push it onto the navigation controller
             navigationController?.pushViewController(vc, animated: true)
         }
