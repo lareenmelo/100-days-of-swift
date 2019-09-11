@@ -18,8 +18,14 @@ class ViewController: UIViewController {
     var correctAnswer = 0
     var score = 0
     
+    @objc func checkScore() {
+        callAlert(title: "Score", message: "Your score is \(score)", addHandler: false)
+    
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Score", style: .plain, target: self, action: #selector(checkScore))
         // Do any additional setup after loading the view.
         countries += ["estonia", "france", "germany", "ireland", "italy", "monaco", "nigeria", "poland", "russia", "spain", "uk", "us"]
         
@@ -52,19 +58,19 @@ class ViewController: UIViewController {
             if sender.tag == correctAnswer {
                 title = "Correct"
                 score += 1
-                callAlert(title: title, message: "Your score is \(score).")
+                callAlert(title: title, message: "Your score is \(score).", addHandler: true)
 
             } else {
                 title = "Wrong"
                 score -= 1
-                callAlert(title: title, message: "Wrong! That's the flag of \(countries[correctAnswer].uppercased()). Your score is \(score).")
+                callAlert(title: title, message: "Wrong! That's the flag of \(countries[correctAnswer].uppercased()). Your score is \(score).", addHandler: true)
 
             }
             
             questionsAsked += 1
             
         } else {
-            callAlert(title: "Game Over", message: "Your score is \(score).")
+            callAlert(title: "Game Over", message: "Your score is \(score).", addHandler: true)
             finalizeGame()
         }
     }
@@ -77,9 +83,14 @@ class ViewController: UIViewController {
         
     }
     
-    func callAlert(title: String, message: String) {
+    func callAlert(title: String, message: String, addHandler: Bool) {
         let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
+        if addHandler {
+            ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
+
+        } else {
+            ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: nil))
+        }
         present(ac, animated: true)
 
     }
