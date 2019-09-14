@@ -6,13 +6,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tX5-uw-xml">
             <objects>
-                <tableViewController id="a57-gg-dwz" customClass="ViewController" customModule="Milestone1" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="HomeViewController" id="a57-gg-dwz" customClass="ViewController" customModule="Milestone1" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VX4-z7-LGW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -33,10 +34,42 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="TlN-9c-xY7"/>
+                    <connections>
+                        <segue destination="juC-Kk-CZc" kind="show" identifier="flagDetail" id="3Qf-SE-ExD"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aqR-NJ-lYC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1792.753623188406" y="94.419642857142847"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="DsF-39-bAk">
+            <objects>
+                <viewController storyboardIdentifier="DetailViewController" id="juC-Kk-CZc" customClass="DetailViewController" customModule="Milestone1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="h15-39-KBw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gCk-5z-3zO">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="gCk-5z-3zO" secondAttribute="trailing" id="RF2-P3-GVe"/>
+                            <constraint firstAttribute="bottom" secondItem="gCk-5z-3zO" secondAttribute="bottom" id="aLr-Kl-158"/>
+                            <constraint firstItem="gCk-5z-3zO" firstAttribute="top" secondItem="h15-39-KBw" secondAttribute="top" id="cK5-YD-VUq"/>
+                            <constraint firstItem="gCk-5z-3zO" firstAttribute="leading" secondItem="h15-39-KBw" secondAttribute="leading" id="qP1-fA-O1h"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hTY-39-jPb"/>
+                    </view>
+                    <connections>
+                        <outlet property="flagImageView" destination="gCk-5z-3zO" id="VrH-nK-91p"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gWP-CD-SMm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2729" y="94"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="M8D-bt-Ib5">

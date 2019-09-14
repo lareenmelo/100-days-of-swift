@@ -26,10 +26,7 @@ class ViewController: UITableViewController {
                 flags.append(item)
             }
         }
-        
-        
     }
-    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return flags.count
@@ -37,9 +34,21 @@ class ViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "flag", for: indexPath)
+        
+        cell.imageView?.image = UIImage(named: flags[indexPath.row])
         cell.textLabel?.text = flags[indexPath.row]
         
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController {
+            
+            vc.flagSelected = flags[indexPath.row]
+            
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
 }
 
