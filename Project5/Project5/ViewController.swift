@@ -69,6 +69,10 @@ class ViewController: UITableViewController {
     
     func isOriginal(word: String) -> Bool {
         return !usedWords.contains(word)
+        /*  Another solution could've been finding the words lowercased,
+            so we don't force lowercase on user input, but again,
+            guidelines are good.
+         */
     }
     
     func isReal(word: String) -> Bool {
@@ -92,7 +96,7 @@ class ViewController: UITableViewController {
         if isPossible(word: lowerAnswer) {
             if isOriginal(word: lowerAnswer) {
                 if isReal(word: lowerAnswer) {
-                    usedWords.insert(answer, at: 0)
+                    usedWords.insert(lowerAnswer, at: 0)
                     
                     let indexPath = IndexPath(row: 0, section: 0)
                     tableView.insertRows(at: [indexPath], with: .automatic)
