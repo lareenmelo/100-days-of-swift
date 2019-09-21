@@ -50,20 +50,40 @@ class ViewController: UIViewController {
         view.addSubview(label4)
         view.addSubview(label5)
         
-        let viewsDictionary = ["label1": label1, "label2": label2, "label3": label3, "label4": label4, "label5": label5]
-        // VFL: drawing layout with keyboard symbols
-//        view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "H:|[label1]|", options: [], metrics: nil, views: viewsDictionary))
-//        view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "H:|[label2]|", options: [], metrics: nil, views: viewsDictionary))
-//        view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "H:|[label3]|", options: [], metrics: nil, views: viewsDictionary))
-//        view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "H:|[label4]|", options: [], metrics: nil, views: viewsDictionary))
-//        view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "H:|[label5]|", options: [], metrics: nil, views: viewsDictionary))
+//        let viewsDictionary = ["label1": label1, "label2": label2, "label3": label3, "label4": label4, "label5": label5]
+//        // VFL: drawing layout with keyboard symbols
+////        view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "H:|[label1]|", options: [], metrics: nil, views: viewsDictionary))
+////        view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "H:|[label2]|", options: [], metrics: nil, views: viewsDictionary))
+////        view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "H:|[label3]|", options: [], metrics: nil, views: viewsDictionary))
+////        view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "H:|[label4]|", options: [], metrics: nil, views: viewsDictionary))
+////        view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "H:|[label5]|", options: [], metrics: nil, views: viewsDictionary))
+//        let metrics = ["labelHeight": 88]
+//
+//        for label in viewsDictionary.keys {
+////            NSLayoutConstraint.constraints(withVisualFormat:
+////            converts vfls into array of constraints
+//            view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "H:|[\(label)]|", options: [], metrics: nil, views: viewsDictionary))
+////            view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "V:|[label1]-[label2]-[label3]-[label4]-[label5]", options: [], metrics: nil, views: viewsDictionary))
+//            view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "V:|[label1(labelHeight@999)]-[label2(label1)]-[label3(label1)]-[label4(label1)]-[label5(label1)]->=10-|", options: [], metrics: metrics, views: viewsDictionary))
+//
+//
+//        }
+        var previous: UILabel?
         
-        for label in viewsDictionary.keys {
-//            NSLayoutConstraint.constraints(withVisualFormat:
-//            converts vfls into array of constraints
-            view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "H:|[\(label)]|", options: [], metrics: nil, views: viewsDictionary))
-            view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "V:|[label1]-[label2]-[label3]-[label4]-[label5]", options: [], metrics: nil, views: viewsDictionary))
-
+        for label in [label1, label2, label3, label4, label5] {
+            label.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+            label.heightAnchor.constraint(equalToConstant: 88).isActive = true
+            
+            if let previous = previous {
+                // we have a previous label – create a height constraint
+                label.topAnchor.constraint(equalTo: previous.bottomAnchor, constant: 10).isActive = true
+            } else {
+                // this is the first label
+                label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+            }
+            
+            // set the previous label to be the current one, for the next loop iteration
+            previous = label
         }
     }
 
