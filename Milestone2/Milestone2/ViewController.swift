@@ -10,7 +10,6 @@ import UIKit
 
 class ViewController: UITableViewController {
     var shoppingList = [String]()
-//    let item = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
