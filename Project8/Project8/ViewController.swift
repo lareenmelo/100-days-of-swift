@@ -125,14 +125,15 @@ class ViewController: UIViewController {
                 // create a new button and give it a big font size
                 let letterButton = UIButton(type: .system)
                 letterButton.titleLabel?.font = UIFont.systemFont(ofSize: 36)
-                
+                letterButton.layer.borderWidth = 1
+                letterButton.layer.borderColor = UIColor.darkGray.cgColor
+
                 // give the button some temporary text so we can see it on-screen
                 letterButton.setTitle("WWW", for: .normal)
                 
                 // calculate the frame of this button using its column and row
                 let frame = CGRect(x: col * width, y: row * height, width: width, height: height)
                 letterButton.frame = frame
-                
                 // add it to the buttons view
                 buttonsView.addSubview(letterButton)
                 
