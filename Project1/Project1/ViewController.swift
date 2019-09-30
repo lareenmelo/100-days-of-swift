@@ -17,20 +17,23 @@ class ViewController: UITableViewController {
         title = "Storm Viewer"
         navigationController?.navigationBar.prefersLargeTitles = true
 
+        performSelector(inBackground: #selector(loadPictures), with: nil)
+        tableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
+//        pictures.sort(by: <) you could do this <3
+    }
+
+    @objc func loadPictures() {
         let fm = FileManager.default
         let path = Bundle.main.resourcePath!
         let items = try! fm.contentsOfDirectory(atPath: path)
-        
         for item in items {
             if item.hasPrefix("nssl") {
                 pictures.append(item)
             }
         }
-        
-//        pictures.sort(by: <) you could do this <3
         pictures.sort()
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pictures.count
     }
