@@ -28,6 +28,9 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
             }
         }
         
+        
+//        defaults.set(frequencies, forKey: "SavedArray")
+
     }
     
     @objc func addNewPerson() {
