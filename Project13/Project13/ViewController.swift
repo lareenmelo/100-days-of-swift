@@ -13,6 +13,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var intensity: UISlider!
     @IBOutlet var changeFilter: UIButton!
+    @IBOutlet var radius: UISlider!
     var currentImage: UIImage!
     var context: CIContext! // handles rendering
     var currentFilter: CIFilter! // stores whatevs filter user activated
@@ -36,6 +37,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func applyProcessing() {
         let inputKeys = currentFilter.inputKeys
+        
+        if inputKeys.contains(kCIInputRadiusKey) {
+            currentFilter.setValue(radius.value * 200, forKey: kCIInputRadiusKey)
+        }
 
         if inputKeys.contains(kCIInputIntensityKey) { currentFilter.setValue(intensity.value, forKey: kCIInputIntensityKey) }
         if inputKeys.contains(kCIInputRadiusKey) { currentFilter.setValue(intensity.value * 200, forKey: kCIInputRadiusKey) }
@@ -106,6 +111,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         applyProcessing()
     }
     
+    @IBAction func radiusChanged(_ sender: Any) {
+        applyProcessing()
+    }
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error {
             // we got back an error!
