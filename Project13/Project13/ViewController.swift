@@ -24,6 +24,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(importPicture))
         context = CIContext()
         currentFilter = CIFilter(name: "CISepiaTone")
+        changeFilter.setTitle("Change Filter (CISepiaTone)", for: .normal)
     }
 
     @objc func importPicture() {
@@ -67,7 +68,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // safely read the alert action's title
         guard let actionTitle = action.title else { return }
         
-        changeFilter.setTitle(actionTitle, for: .normal)
+        changeFilter.setTitle("Change Filter (\(actionTitle))", for: .normal)
 
         currentFilter = CIFilter(name: actionTitle)
 
@@ -91,7 +92,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(ac, animated: true)
     }
     
-    @IBAction func save(_ sender: Any) {        
+    @IBAction func save(_ sender: Any) {
         if let image = imageView.image {
             UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
         } else {
