@@ -12,6 +12,7 @@ import CoreImage
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var intensity: UISlider!
+    @IBOutlet var changeFilter: UIButton!
     var currentImage: UIImage!
     var context: CIContext! // handles rendering
     var currentFilter: CIFilter! // stores whatevs filter user activated
@@ -65,6 +66,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
         // safely read the alert action's title
         guard let actionTitle = action.title else { return }
+        
+        changeFilter.setTitle(actionTitle, for: .normal)
 
         currentFilter = CIFilter(name: actionTitle)
 
@@ -88,9 +91,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(ac, animated: true)
     }
     
-    @IBAction func save(_ sender: Any) {
-//        guard let image = imageView.image else { return }
-        
+    @IBAction func save(_ sender: Any) {        
         if let image = imageView.image {
             UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
         } else {
