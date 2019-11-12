@@ -23,6 +23,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Do any additional setup after loading the view.
         title = "YACIFP"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(importPicture))
+        
         context = CIContext()
         currentFilter = CIFilter(name: "CISepiaTone")
         changeFilter.setTitle("Change Filter (CISepiaTone)", for: .normal)
@@ -33,6 +34,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         picker.allowsEditing = true
         picker.delegate = self
         present(picker, animated: true)
+
     }
     
     func applyProcessing() {
@@ -64,6 +66,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
 
         applyProcessing()
+        
+        imageView.alpha = 0
+        dismiss(animated: true) { [weak self] in
+            UIView.animate(withDuration: 1, delay: 0, options: [], animations: {
+                self?.imageView.alpha = 1
+            })
+        }
     }
     
     func setFilter(action: UIAlertAction) {
