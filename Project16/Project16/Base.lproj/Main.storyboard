@@ -40,6 +40,40 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="112.5"/>
         </scene>
+        <!--Web View Controller-->
+        <scene sceneID="6Hj-WP-OBA">
+            <objects>
+                <viewController storyboardIdentifier="WebViewController" id="DWu-Iw-7Fn" customClass="WebViewController" customModule="Project16" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xco-EB-07T">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eot-rp-bQZ">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="eot-rp-bQZ" firstAttribute="bottom" secondItem="AMQ-Tn-1Oq" secondAttribute="bottom" id="4h2-yZ-0Ni"/>
+                            <constraint firstItem="eot-rp-bQZ" firstAttribute="leading" secondItem="AMQ-Tn-1Oq" secondAttribute="leading" id="Dat-Y5-Vb5"/>
+                            <constraint firstItem="eot-rp-bQZ" firstAttribute="top" secondItem="AMQ-Tn-1Oq" secondAttribute="top" id="DsR-Ge-4wE"/>
+                            <constraint firstItem="eot-rp-bQZ" firstAttribute="centerX" secondItem="xco-EB-07T" secondAttribute="centerX" id="obz-77-mgN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="AMQ-Tn-1Oq"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="eot-rp-bQZ" id="48n-9f-eog"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yWt-wX-056" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2207.2463768115945" y="132.58928571428572"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="mZA-Mg-bdv">
             <objects>
