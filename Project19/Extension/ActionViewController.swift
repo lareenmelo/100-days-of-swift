@@ -24,6 +24,8 @@ class ActionViewController: UIViewController {
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(bookmarkedScriptsTapped))
+
 
         
         if let inputItem = extensionContext?.inputItems.first as? NSExtensionItem {
@@ -56,6 +58,20 @@ class ActionViewController: UIViewController {
         item.attachments = [customJavaScript]
 
         extensionContext?.completeRequest(returningItems: [item])
+    }
+    
+    @objc func bookmarkedScriptsTapped() {
+        let ac = UIAlertController(title: "Examples", message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        for (title,script) in exampleScripts {
+            ac.addAction(UIAlertAction(title: title, style: .default) {
+                [weak self] _ in
+                self?.script.text = script
+            })
+        }
+        present(ac, animated: false)
+
     }
     
     @objc func adjustForKeyboard(notification: Notification) {
