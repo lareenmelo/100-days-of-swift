@@ -182,8 +182,13 @@ class GameScene: SKScene {
     
     //to explore a single firework
     func explode(firework: SKNode) {
+        // challenge #3
+        let sequenceDelay = SKAction.sequence([SKAction.wait(forDuration: 6), SKAction.removeFromParent()])
+        
         if let emitter = SKEmitterNode(fileNamed: "explode") {
             emitter.position = firework.position
+            // challenge #3
+            emitter.run(sequenceDelay)
             addChild(emitter)
         }
 
