@@ -12,13 +12,16 @@ import GameplayKit
 class GameScene: SKScene {
     var gameTimer: Timer?
     var fireworks = [SKNode]()
+    // challenge #1
     var scoreLabel: SKLabelNode!
-
-
+    
     let leftEdge = -22
     let bottomEdge = -22
     let rightEdge = 1024 + 22
 
+    // challenge #2
+    var timerCount = 0
+    // challenge #1
     var score = 0 {
         didSet {
             scoreLabel.text = "Score: \(score)"
@@ -32,6 +35,7 @@ class GameScene: SKScene {
         background.zPosition = -1
         addChild(background)
         
+        // challenge #1
         scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
         scoreLabel.position = CGPoint(x: 16, y: 16)
         scoreLabel.horizontalAlignmentMode = .left
@@ -41,6 +45,7 @@ class GameScene: SKScene {
     }
     
     @objc func launchFireworks() {
+        timerCount += 1
         let movementAmount: CGFloat = 1800
 
         switch Int.random(in: 0...3) {
@@ -78,6 +83,11 @@ class GameScene: SKScene {
 
         default:
             break
+        }
+        
+        // challenge #2
+        if timerCount == 10 {
+            gameTimer?.invalidate()
         }
         
     }
