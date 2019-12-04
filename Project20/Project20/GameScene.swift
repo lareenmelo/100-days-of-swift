@@ -45,8 +45,9 @@ class GameScene: SKScene {
     }
     
     @objc func launchFireworks() {
-        timerCount += 1
         let movementAmount: CGFloat = 1800
+        // challenge #2
+        timerCount += 1
 
         switch Int.random(in: 0...3) {
         case 0:
