@@ -11,14 +11,14 @@ import UserNotifications
 
 class ViewController: UIViewController, UNUserNotificationCenterDelegate {
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Register", style: .plain, target: self, action: #selector(registerLocal))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Schedule", style: .plain, target: self, action: #selector(scheduleLocal))
     }
 
-    // requests permission to local notifications
     @objc func registerLocal() {
         let center = UNUserNotificationCenter.current()
 
@@ -30,22 +30,18 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
             }
         }
     }
-    
-    // calendar triggers every morning; the when to show
-//    var dateComponents = DateComponents()
-//    dateComponents.hour = 10
-//    dateComponents.minute = 30
-//    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
 
-    // the what to show
-    // UNMutableNotificationContent - modify
     @objc func scheduleLocal() {
+        registerCategories()
+
         let center = UNUserNotificationCenter.current()
+
+        // not required, but useful for testing!
+        center.removeAllPendingNotificationRequests()
 
         let content = UNMutableNotificationContent()
         content.title = "Late wake up call"
         content.body = "The early bird catches the worm, but the second mouse gets the cheese."
-        // actions, string that identifies type of alert
         content.categoryIdentifier = "alarm"
         content.userInfo = ["customData": "fizzbuzz"]
         content.sound = UNNotificationSound.default
@@ -54,12 +50,12 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         dateComponents.hour = 10
         dateComponents.minute = 30
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-
+        
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         center.add(request)
-
+        print("eowwww")
     }
-    
+
     func registerCategories() {
         let center = UNUserNotificationCenter.current()
         center.delegate = self
@@ -69,7 +65,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
 
         center.setNotificationCategories([category])
     }
-    
+
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         // pull out the buried userInfo dictionary
         let userInfo = response.notification.request.content.userInfo
@@ -79,24 +75,26 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
 
             switch response.actionIdentifier {
             case UNNotificationDefaultActionIdentifier:
-                // the user swiped to unlock
-                print("Default identifier")
+                // the user swiped to unlock; do nothing
+                showAlert(message: "SWIPED TO UNLOCK SELECTED")
 
             case "show":
-                // the user tapped our "show more info…" button
-                print("Show more information…")
-
+                showAlert(message: "SHOW MORE INFORMATION SELECTED")
+                
             default:
                 break
             }
         }
 
-        // you must call the completion handler when you're done
+        // you need to call the completion handler when you're done
         completionHandler()
     }
-
-    /* test notifications: center.removeAllPendingNotificationRequests()
-     interval trigger: let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false) (remeber geolocation triggers exist*
-     */
+    
+    // Challenge #1
+    func showAlert(message: String) {
+        let ac = UIAlertController(title: "Action Selected", message: message, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Done", style: .cancel))
+        
+        present(ac, animated: true)
+    }
 }
-
