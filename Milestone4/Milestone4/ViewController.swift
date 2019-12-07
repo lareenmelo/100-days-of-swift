@@ -29,8 +29,13 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let bundle = Bundle(for: ViewController.self)
+        let storyboard = UIStoryboard(name: "Main", bundle: bundle)
+        if let detailVC = storyboard.instantiateViewController(identifier: "DetailViewController") as? DetailViewController {
+            detailVC.content = notes[indexPath.row].content
+            
+            navigationController?.pushViewController(detailVC, animated: true)
+        }
     }
-
 }
 

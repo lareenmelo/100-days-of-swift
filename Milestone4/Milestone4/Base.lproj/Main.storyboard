@@ -36,16 +36,37 @@
             </objects>
             <point key="canvasLocation" x="1021.7391304347827" y="124.55357142857142"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="bOa-Vn-jU6">
             <objects>
-                <viewController storyboardIdentifier="DetailViewController" id="7cP-gB-Z33" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" id="7cP-gB-Z33" customClass="DetailViewController" customModule="Milestone4" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vj4-dn-0Ok">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sNj-E4-ZWN">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="BK1-XU-0YK" firstAttribute="trailing" secondItem="sNj-E4-ZWN" secondAttribute="trailing" id="3yS-8e-bLy"/>
+                            <constraint firstItem="sNj-E4-ZWN" firstAttribute="top" secondItem="BK1-XU-0YK" secondAttribute="top" id="7dg-If-KJ9"/>
+                            <constraint firstItem="sNj-E4-ZWN" firstAttribute="centerY" secondItem="BK1-XU-0YK" secondAttribute="centerY" id="HbX-ke-YRL"/>
+                            <constraint firstItem="sNj-E4-ZWN" firstAttribute="leading" secondItem="BK1-XU-0YK" secondAttribute="leading" id="Lcy-PA-H2A"/>
+                            <constraint firstItem="sNj-E4-ZWN" firstAttribute="centerX" secondItem="BK1-XU-0YK" secondAttribute="centerX" id="YUW-IY-p5x"/>
+                            <constraint firstItem="BK1-XU-0YK" firstAttribute="bottom" secondItem="sNj-E4-ZWN" secondAttribute="bottom" id="nhM-dg-SBR"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="BK1-XU-0YK"/>
                     </view>
+                    <connections>
+                        <outlet property="noteTextView" destination="sNj-E4-ZWN" id="vox-nj-jjq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1hb-vi-24r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

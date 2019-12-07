@@ -10,9 +10,11 @@ import UIKit
 
 class DetailViewController: UIViewController {
     var content = ""
-
+    @IBOutlet var noteTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        noteTextView.text = content
 
         // Do any additional setup after loading the view.
     }
