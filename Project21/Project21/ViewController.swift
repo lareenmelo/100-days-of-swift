@@ -16,7 +16,8 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         super.viewDidLoad()
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Register", style: .plain, target: self, action: #selector(registerLocal))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Schedule", style: .plain, target: self, action: #selector(scheduleLocal))
+        // challenge #2
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Schedule", style: .plain, target: self, action: #selector(initialTime))
     }
 
     @objc func registerLocal() {
@@ -31,7 +32,12 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         }
     }
 
-    @objc func scheduleLocal() {
+    // challenge #2
+    @objc func initialTime() {
+        scheduleLocal(timeInterval: 60)
+    }
+    
+    @objc func scheduleLocal(timeInterval: TimeInterval) {
         registerCategories()
 
         let center = UNUserNotificationCenter.current()
@@ -46,14 +52,15 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         content.userInfo = ["customData": "fizzbuzz"]
         content.sound = UNNotificationSound.default
 
-        var dateComponents = DateComponents()
-        dateComponents.hour = 10
-        dateComponents.minute = 30
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        
+//        var dateComponents = DateComponents()
+//        dateComponents.hour = 10
+//        dateComponents.minute = 30
+//        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        // challenge #2
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
+
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         center.add(request)
-        print("eowwww")
     }
 
     func registerCategories() {
@@ -61,7 +68,10 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         center.delegate = self
 
         let show = UNNotificationAction(identifier: "show", title: "Tell me more…", options: .foreground)
-        let category = UNNotificationCategory(identifier: "alarm", actions: [show], intentIdentifiers: [])
+        // challenge #2
+        let later = UNNotificationAction(identifier: "later", title: "Remind me later", options: .authenticationRequired)
+        // authenticationRequired so app doesn't open
+        let category = UNNotificationCategory(identifier: "alarm", actions: [show, later], intentIdentifiers: [])
 
         center.setNotificationCategories([category])
     }
@@ -80,6 +90,11 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
 
             case "show":
                 showAlert(message: "SHOW MORE INFORMATION SELECTED")
+           
+            // challenge #2
+            case "later":
+                showAlert(message: "REMIND ME LATER SELECTED")
+                scheduleLocal(timeInterval: 86400)
                 
             default:
                 break
