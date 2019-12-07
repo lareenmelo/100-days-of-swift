@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class ViewController: UIViewController {
     @IBOutlet var button1: UIButton!
@@ -25,6 +26,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Score", style: .plain, target: self, action: #selector(checkScore))
         // Do any additional setup after loading the view.
         countries += ["estonia", "france", "germany", "ireland", "italy", "monaco", "nigeria", "poland", "russia", "spain", "uk", "us"]
@@ -40,6 +42,56 @@ class ViewController: UIViewController {
         askQuestion()
     }
     
+    func manageNotifications() {
+        let center = UNUserNotificationCenter.current()
+        
+        center.getNotificationSettings { [weak self] settings in
+            
+            if settings.authorizationStatus == .notDetermined {
+                let ac = UIAlertController(title: "Daily reminder", message: "Allow notifications to remind u to play games", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "Next", style: .default) { _ in
+                    self?.notificationsAuthorization()
+                })
+                self?.present(ac, animated: true)
+                return
+            } else if settings.authorizationStatus == .authorized {
+                self?.scheduleNotifications()
+            }
+            
+        }
+    }
+    
+    func notificationsAuthorization() {
+        let center = UNUserNotificationCenter.current()
+
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { [weak self] granted, error in
+            if granted {
+                self?.scheduleNotifications()
+            } else {
+                print("She wasn't ready!")
+            }
+        }
+        
+    }
+    func scheduleNotifications() {
+        let center = UNUserNotificationCenter.current()
+        
+        center.removeAllPendingNotificationRequests()
+
+        let content = UNMutableNotificationContent()
+        content.title = "Daily Reminder"
+        content.body = "PLAY THE FLAG GAME."
+        content.categoryIdentifier = "reminder"
+        content.sound = .default
+
+        let secondsPerDay: TimeInterval = 3600 * 24
+        for day in 1...7 {
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: secondsPerDay * Double(day), repeats: false)
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+            center.add(request)
+        }
+    }
+
     func askQuestion(action: UIAlertAction! = nil) {
         countries.shuffle()
 
