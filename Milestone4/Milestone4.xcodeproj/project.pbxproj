@@ -14,6 +14,8 @@
 		57384D7D239C2D5D00F11819 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57384D7C239C2D5D00F11819 /* Assets.xcassets */; };
 		57384D80239C2D5D00F11819 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57384D7E239C2D5D00F11819 /* LaunchScreen.storyboard */; };
 		57384D88239C32BC00F11819 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57384D87239C32BC00F11819 /* DetailViewController.swift */; };
+		57384D8A239C37EF00F11819 /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57384D89239C37EF00F11819 /* Notes.swift */; };
+		57384D8E239C840C00F11819 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57384D8D239C840C00F11819 /* Defaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		57384D7F239C2D5D00F11819 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57384D81239C2D5D00F11819 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57384D87239C32BC00F11819 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		57384D89239C37EF00F11819 /* Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
+		57384D8D239C840C00F11819 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,8 @@
 				57384D7E239C2D5D00F11819 /* LaunchScreen.storyboard */,
 				57384D81239C2D5D00F11819 /* Info.plist */,
 				57384D87239C32BC00F11819 /* DetailViewController.swift */,
+				57384D89239C37EF00F11819 /* Notes.swift */,
+				57384D8D239C840C00F11819 /* Defaults.swift */,
 			);
 			path = Milestone4;
 			sourceTree = "<group>";
@@ -142,7 +148,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				57384D78239C2D5C00F11819 /* ViewController.swift in Sources */,
+				57384D8A239C37EF00F11819 /* Notes.swift in Sources */,
 				57384D74239C2D5C00F11819 /* AppDelegate.swift in Sources */,
+				57384D8E239C840C00F11819 /* Defaults.swift in Sources */,
 				57384D76239C2D5C00F11819 /* SceneDelegate.swift in Sources */,
 				57384D88239C32BC00F11819 /* DetailViewController.swift in Sources */,
 			);
