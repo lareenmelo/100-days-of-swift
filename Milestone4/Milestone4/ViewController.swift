@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UITableViewController {
     
-    var notes = [Notes]()
+    var notes = [Note]()
     let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
@@ -24,11 +24,11 @@ class ViewController: UITableViewController {
             let jsonDecoder = JSONDecoder()
             
             do {
-                notes = try jsonDecoder.decode([Notes].self , from: savedNotes)
+                notes = try jsonDecoder.decode([Note].self , from: savedNotes)
             } catch {
                 print("Failed to load notes")
             }
-            print(notes.count)
+
             tableView.reloadData()
         }
     }
@@ -57,24 +57,16 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        openDetailViewController(noteIndex: indexPath.row)
+    }
+    
+    func openDetailViewController(noteIndex: Int) {
         let bundle = Bundle(for: ViewController.self)
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
         if let detailVC = storyboard.instantiateViewController(identifier: "DetailViewController") as? DetailViewController {
-            detailVC.detail = notes[indexPath.row]
-//            detailVC.noteTextView.text = notes[indexPath.row].content
-//            print(notes[indexPath.row].content)
+            detailVC.notes = notes
+            detailVC.noteIndex = noteIndex
             navigationController?.pushViewController(detailVC, animated: true)
         }
     }
 }
-
-/*remember content is ? because at first, the app has no notes, so then
- you cannot just access the note's content. REMEMBER ITS DUMMY DATA, so
- if you create a note, direct them to the detail view controller, and save the content if dismissed.
- 
- 1. create a new note
- 2. save note (even if dismissed like, go back)
- 3. key board thingy
- 4. instead of save, make it look like done
- 5. do the custom thingy where the title is the first line and then the rest of the content is the second line (subtitle i think it was)
- */

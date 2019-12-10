@@ -12,17 +12,17 @@
 		578C1B712321804C006279BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 578C1B6F2321804C006279BE /* Main.storyboard */; };
 		578C1B732321804F006279BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 578C1B722321804F006279BE /* Assets.xcassets */; };
 		578C1B762321804F006279BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 578C1B742321804F006279BE /* LaunchScreen.storyboard */; };
-		578C1B88232186DE006279BE /* nssl0049.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 578C1B7E232186DE006279BE /* nssl0049.jpg */; };
-		578C1B89232186DE006279BE /* nssl0046.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 578C1B7F232186DE006279BE /* nssl0046.jpg */; };
-		578C1B8A232186DE006279BE /* nssl0091.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 578C1B80232186DE006279BE /* nssl0091.jpg */; };
-		578C1B8B232186DE006279BE /* nssl0045.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 578C1B81232186DE006279BE /* nssl0045.jpg */; };
-		578C1B8C232186DE006279BE /* nssl0051.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 578C1B82232186DE006279BE /* nssl0051.jpg */; };
-		578C1B8D232186DE006279BE /* nssl0041.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 578C1B83232186DE006279BE /* nssl0041.jpg */; };
-		578C1B8E232186DE006279BE /* nssl0042.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 578C1B84232186DE006279BE /* nssl0042.jpg */; };
-		578C1B8F232186DE006279BE /* nssl0043.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 578C1B85232186DE006279BE /* nssl0043.jpg */; };
-		578C1B90232186DE006279BE /* nssl0033.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 578C1B86232186DE006279BE /* nssl0033.jpg */; };
-		578C1B91232186DE006279BE /* nssl0034.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 578C1B87232186DE006279BE /* nssl0034.jpg */; };
 		578C1B932323F657006279BE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578C1B922323F657006279BE /* DetailViewController.swift */; };
+		57BE4D44239FC5580007484E /* nssl0049.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57BE4D3A239FC5570007484E /* nssl0049.jpg */; };
+		57BE4D45239FC5580007484E /* nssl0045.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57BE4D3B239FC5570007484E /* nssl0045.jpg */; };
+		57BE4D46239FC5580007484E /* nssl0041.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57BE4D3C239FC5570007484E /* nssl0041.jpg */; };
+		57BE4D47239FC5580007484E /* nssl0046.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57BE4D3D239FC5570007484E /* nssl0046.jpg */; };
+		57BE4D48239FC5580007484E /* nssl0033.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57BE4D3E239FC5570007484E /* nssl0033.jpg */; };
+		57BE4D49239FC5580007484E /* nssl0091.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57BE4D3F239FC5570007484E /* nssl0091.jpg */; };
+		57BE4D4A239FC5580007484E /* nssl0043.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57BE4D40239FC5570007484E /* nssl0043.jpg */; };
+		57BE4D4B239FC5580007484E /* nssl0034.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57BE4D41239FC5570007484E /* nssl0034.jpg */; };
+		57BE4D4C239FC5580007484E /* nssl0051.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57BE4D42239FC5580007484E /* nssl0051.jpg */; };
+		57BE4D4D239FC5580007484E /* nssl0042.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57BE4D43239FC5580007484E /* nssl0042.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,17 +33,17 @@
 		578C1B722321804F006279BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		578C1B752321804F006279BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		578C1B772321804F006279BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		578C1B7E232186DE006279BE /* nssl0049.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0049.jpg; sourceTree = "<group>"; };
-		578C1B7F232186DE006279BE /* nssl0046.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0046.jpg; sourceTree = "<group>"; };
-		578C1B80232186DE006279BE /* nssl0091.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0091.jpg; sourceTree = "<group>"; };
-		578C1B81232186DE006279BE /* nssl0045.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0045.jpg; sourceTree = "<group>"; };
-		578C1B82232186DE006279BE /* nssl0051.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0051.jpg; sourceTree = "<group>"; };
-		578C1B83232186DE006279BE /* nssl0041.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0041.jpg; sourceTree = "<group>"; };
-		578C1B84232186DE006279BE /* nssl0042.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0042.jpg; sourceTree = "<group>"; };
-		578C1B85232186DE006279BE /* nssl0043.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0043.jpg; sourceTree = "<group>"; };
-		578C1B86232186DE006279BE /* nssl0033.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0033.jpg; sourceTree = "<group>"; };
-		578C1B87232186DE006279BE /* nssl0034.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nssl0034.jpg; sourceTree = "<group>"; };
 		578C1B922323F657006279BE /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		57BE4D3A239FC5570007484E /* nssl0049.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = nssl0049.jpg; path = "../../../../Documents/programming/practice/swift/100DaysOfSwift/HackingWithSwift-master/project3-files/Content/nssl0049.jpg"; sourceTree = "<group>"; };
+		57BE4D3B239FC5570007484E /* nssl0045.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = nssl0045.jpg; path = "../../../../Documents/programming/practice/swift/100DaysOfSwift/HackingWithSwift-master/project3-files/Content/nssl0045.jpg"; sourceTree = "<group>"; };
+		57BE4D3C239FC5570007484E /* nssl0041.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = nssl0041.jpg; path = "../../../../Documents/programming/practice/swift/100DaysOfSwift/HackingWithSwift-master/project3-files/Content/nssl0041.jpg"; sourceTree = "<group>"; };
+		57BE4D3D239FC5570007484E /* nssl0046.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = nssl0046.jpg; path = "../../../../Documents/programming/practice/swift/100DaysOfSwift/HackingWithSwift-master/project3-files/Content/nssl0046.jpg"; sourceTree = "<group>"; };
+		57BE4D3E239FC5570007484E /* nssl0033.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = nssl0033.jpg; path = "../../../../Documents/programming/practice/swift/100DaysOfSwift/HackingWithSwift-master/project3-files/Content/nssl0033.jpg"; sourceTree = "<group>"; };
+		57BE4D3F239FC5570007484E /* nssl0091.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = nssl0091.jpg; path = "../../../../Documents/programming/practice/swift/100DaysOfSwift/HackingWithSwift-master/project3-files/Content/nssl0091.jpg"; sourceTree = "<group>"; };
+		57BE4D40239FC5570007484E /* nssl0043.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = nssl0043.jpg; path = "../../../../Documents/programming/practice/swift/100DaysOfSwift/HackingWithSwift-master/project3-files/Content/nssl0043.jpg"; sourceTree = "<group>"; };
+		57BE4D41239FC5570007484E /* nssl0034.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = nssl0034.jpg; path = "../../../../Documents/programming/practice/swift/100DaysOfSwift/HackingWithSwift-master/project3-files/Content/nssl0034.jpg"; sourceTree = "<group>"; };
+		57BE4D42239FC5580007484E /* nssl0051.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = nssl0051.jpg; path = "../../../../Documents/programming/practice/swift/100DaysOfSwift/HackingWithSwift-master/project3-files/Content/nssl0051.jpg"; sourceTree = "<group>"; };
+		57BE4D43239FC5580007484E /* nssl0042.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = nssl0042.jpg; path = "../../../../Documents/programming/practice/swift/100DaysOfSwift/HackingWithSwift-master/project3-files/Content/nssl0042.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,16 +91,16 @@
 		578C1B7D232186DE006279BE /* Content */ = {
 			isa = PBXGroup;
 			children = (
-				578C1B7E232186DE006279BE /* nssl0049.jpg */,
-				578C1B7F232186DE006279BE /* nssl0046.jpg */,
-				578C1B80232186DE006279BE /* nssl0091.jpg */,
-				578C1B81232186DE006279BE /* nssl0045.jpg */,
-				578C1B82232186DE006279BE /* nssl0051.jpg */,
-				578C1B83232186DE006279BE /* nssl0041.jpg */,
-				578C1B84232186DE006279BE /* nssl0042.jpg */,
-				578C1B85232186DE006279BE /* nssl0043.jpg */,
-				578C1B86232186DE006279BE /* nssl0033.jpg */,
-				578C1B87232186DE006279BE /* nssl0034.jpg */,
+				57BE4D3E239FC5570007484E /* nssl0033.jpg */,
+				57BE4D41239FC5570007484E /* nssl0034.jpg */,
+				57BE4D3C239FC5570007484E /* nssl0041.jpg */,
+				57BE4D43239FC5580007484E /* nssl0042.jpg */,
+				57BE4D40239FC5570007484E /* nssl0043.jpg */,
+				57BE4D3B239FC5570007484E /* nssl0045.jpg */,
+				57BE4D3D239FC5570007484E /* nssl0046.jpg */,
+				57BE4D3A239FC5570007484E /* nssl0049.jpg */,
+				57BE4D42239FC5580007484E /* nssl0051.jpg */,
+				57BE4D3F239FC5570007484E /* nssl0091.jpg */,
 			);
 			name = Content;
 			path = "../../../../../../../../Downloads/HackingWithSwift-master/project1-files/Content";
@@ -164,18 +164,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				578C1B89232186DE006279BE /* nssl0046.jpg in Resources */,
-				578C1B90232186DE006279BE /* nssl0033.jpg in Resources */,
-				578C1B8C232186DE006279BE /* nssl0051.jpg in Resources */,
-				578C1B8A232186DE006279BE /* nssl0091.jpg in Resources */,
-				578C1B8F232186DE006279BE /* nssl0043.jpg in Resources */,
-				578C1B91232186DE006279BE /* nssl0034.jpg in Resources */,
-				578C1B88232186DE006279BE /* nssl0049.jpg in Resources */,
-				578C1B8D232186DE006279BE /* nssl0041.jpg in Resources */,
-				578C1B8E232186DE006279BE /* nssl0042.jpg in Resources */,
+				57BE4D4D239FC5580007484E /* nssl0042.jpg in Resources */,
+				57BE4D4A239FC5580007484E /* nssl0043.jpg in Resources */,
+				57BE4D4C239FC5580007484E /* nssl0051.jpg in Resources */,
+				57BE4D45239FC5580007484E /* nssl0045.jpg in Resources */,
+				57BE4D48239FC5580007484E /* nssl0033.jpg in Resources */,
+				57BE4D47239FC5580007484E /* nssl0046.jpg in Resources */,
+				57BE4D44239FC5580007484E /* nssl0049.jpg in Resources */,
+				57BE4D49239FC5580007484E /* nssl0091.jpg in Resources */,
 				578C1B762321804F006279BE /* LaunchScreen.storyboard in Resources */,
+				57BE4D4B239FC5580007484E /* nssl0034.jpg in Resources */,
 				578C1B732321804F006279BE /* Assets.xcassets in Resources */,
-				578C1B8B232186DE006279BE /* nssl0045.jpg in Resources */,
+				57BE4D46239FC5580007484E /* nssl0041.jpg in Resources */,
 				578C1B712321804C006279BE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
