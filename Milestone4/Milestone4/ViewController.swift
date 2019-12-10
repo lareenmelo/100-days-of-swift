@@ -59,6 +59,24 @@ class ViewController: UITableViewController {
         openDetailViewController(noteIndex: indexPath.row)
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // TODO: remove from user defaults
+            notes.remove(at: indexPath.row)
+
+            DispatchQueue.global().async { [weak self] in
+                if let notes = self?.notes {
+                    Defaults.save(notes: notes)
+                    
+                    DispatchQueue.main.async {
+                        tableView.deleteRows(at: [indexPath], with: .fade)
+
+                    }
+                }
+            }
+        }
+    }
+    
     func openDetailViewController(noteIndex: Int) {
         let bundle = Bundle(for: ViewController.self)
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
