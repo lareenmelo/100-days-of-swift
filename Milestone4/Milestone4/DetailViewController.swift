@@ -12,11 +12,14 @@ class DetailViewController: UIViewController {
     let userDefaults = UserDefaults.standard
     @IBOutlet var noteTextView: UITextView!
     var notes = [Notes]()
+    var detail: Notes!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))
+        
+        noteTextView.text = detail.content
     }
     
 
