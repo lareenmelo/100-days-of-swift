@@ -26,7 +26,7 @@ class ViewController: UITableViewController {
     }
     
     @objc func createNote() {
-        let newNote = Note(content: "like ooh-aah")
+        let newNote = Note(content: "")
         notes.append(newNote)
         
         // TODO: add priority

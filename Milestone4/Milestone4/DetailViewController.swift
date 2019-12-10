@@ -26,24 +26,34 @@ class DetailViewController: UIViewController {
         
         originalText = notes[noteIndex].content
         noteTextView.text = notes[noteIndex].content
-        
-        // TODO: if view controller dismissed and note is empty, delete.
-        
+                
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        saveNote()
+        // TODO: if view controller dismissed and note is empty, delete.
+
+    }
 
     @objc func doneEditing() {
-        // TODO: compare if text is the same there's no need to save / update notes
-        if originalText == noteTextView.text {
-            // TODO: just dismiss keyboard and editing
-        } else {
+        if originalText != noteTextView.text {
             notes[noteIndex].content = noteTextView.text
-            // FIXME: run on proper thread
-            Defaults.save(notes: notes)
+            saveNote()
         }
 
         navigationController?.popViewController(animated: true)
         
+    }
+    
+    func saveNote() {
+        // TODO: add priority
+        DispatchQueue.global().async { [weak self] in
+            if let notes = self?.notes {
+                Defaults.save(notes: notes)
+
+            }
+        }
     }
     
     @objc func shareNote() {
