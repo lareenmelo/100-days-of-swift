@@ -15,36 +15,39 @@ class DetailViewController: UIViewController {
     var noteIndex: Int!
     var shareButton: UIBarButtonItem!
     var saveButton: UIBarButtonItem!
+    var originalText: String!
         
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))
+        saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(doneEditing))
         shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareNote))
         navigationItem.rightBarButtonItems = [shareButton, saveButton]
         
+        originalText = notes[noteIndex].content
         noteTextView.text = notes[noteIndex].content
+        
+        // TODO: if view controller dismissed and note is empty, delete.
         
     }
     
 
-    @objc func save() {
-        let newNote = Note(id: UUID().uuidString, content: noteTextView.text)
-        notes.append(newNote)
-        
-        let jsonEncoder = JSONEncoder()
-        if let savedData = try? jsonEncoder.encode(notes) {
-            userDefaults.set(savedData, forKey: "notes")
+    @objc func doneEditing() {
+        // TODO: compare if text is the same there's no need to save / update notes
+        if originalText == noteTextView.text {
+            // TODO: just dismiss keyboard and editing
         } else {
-            print("Failed to save notes")
+            notes[noteIndex].content = noteTextView.text
+            // FIXME: run on proper thread
+            Defaults.save(notes: notes)
         }
-            
+
         navigationController?.popViewController(animated: true)
         
     }
     
     @objc func shareNote() {
-        // share selected note
+        // FIXME: element to share is the note content (test with phone)
         let ac = UIActivityViewController(activityItems: ["hey, where my ppl at?"], applicationActivities: [])
         ac.popoverPresentationController?.barButtonItem = shareButton
         present(ac, animated: true)

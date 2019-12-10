@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UITableViewController {
     
     var notes = [Note]()
-    let defaults = UserDefaults.standard
+    let userDefaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,29 +20,28 @@ class ViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if let savedNotes = defaults.object(forKey: "notes") as? Data {
-            let jsonDecoder = JSONDecoder()
-            
-            do {
-                notes = try jsonDecoder.decode([Note].self , from: savedNotes)
-            } catch {
-                print("Failed to load notes")
-            }
+        notes = Defaults.load()
+        tableView.reloadData()
 
-            tableView.reloadData()
-        }
     }
     
     @objc func createNote() {
-        let bundle = Bundle(for: ViewController.self)
-        let storyboard = UIStoryboard(name: "Main", bundle: bundle)
-        if let detailVC = storyboard.instantiateViewController(identifier: "DetailViewController") as? DetailViewController {
-            detailVC.notes = notes
-    
-            navigationController?.pushViewController(detailVC, animated: true)
+        let newNote = Note(content: "like ooh-aah")
+        notes.append(newNote)
+        
+        // TODO: add priority
+        DispatchQueue.global().async { [weak self] in
+            if let notes = self?.notes {
+                Defaults.save(notes: notes)
+                
+                DispatchQueue.main.async {
+                    self?.openDetailViewController(noteIndex: notes.count - 1)
+                    
+                }
+            }
         }
     }
-    
+
     
     // MARK: Table View Controller Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
