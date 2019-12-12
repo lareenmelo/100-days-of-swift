@@ -6,6 +6,9 @@
 //  Copyright © 2019 Lareen Melo. All rights reserved.
 //
 
+// TODO
+//   2. When one item selected, change label to delete instead of delete all.
+
 import UIKit
 
 class ViewController: UITableViewController {
@@ -19,7 +22,8 @@ class ViewController: UITableViewController {
     // MARK: Toolbar Items Declaration
     var composeButton: UIBarButtonItem!
     var totalNotes: UIBarButtonItem!
-    var deleteNotesButton: UIBarButtonItem!
+    var deleteAllNotesButton: UIBarButtonItem!
+    var deleteSelectedNotesButton: UIBarButtonItem!
     // Empty button to replicate notes layout
     var space: UIBarButtonItem!
 
@@ -37,16 +41,16 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         editButton.title = "Edit"
+        tableView.allowsMultipleSelectionDuringEditing = true
         
         // MARK: Toolbar Items Inits
         composeButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(createNote))
         space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        
-        // FIXME: hacer el force de una variable que cambie con el didSet, kkc.
-        deleteNotesButton = UIBarButtonItem(title: "Delete All", style: .plain, target: self, action: #selector(deleteNotes))
+        deleteAllNotesButton = UIBarButtonItem(title: "Delete All", style: .plain, target: self, action: #selector(deleteAllNotes))
+        deleteSelectedNotesButton = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteNotes))
 
         // FIXME: notes aren't being updated.
-        let totalNotes = UIBarButtonItem(title: "\(notes.count) Notes", style: .plain, target: self, action: nil)
+        totalNotes = UIBarButtonItem(title: "\(notes.count) Notes", style: .plain, target: self, action: nil)
         
         // TODO: init two arrays here.
         
@@ -62,9 +66,24 @@ class ViewController: UITableViewController {
     }
     
     @IBAction func editingScene(_ sender: Any) {
-        editScene.toggle()
+        guard let title = (sender as! UIBarButtonItem).title else { return }
 
-        toolbarItems = [space, deleteNotesButton]
+        print(editScene)
+        switch(title) {
+        case "Edit":
+            toolbarItems = [space, deleteAllNotesButton]
+
+        case "Cancel":
+            toolbarItems = [space, totalNotes, space, composeButton]
+
+        default:
+            print("The edit button's title didn't match with the cases of the @editingScene function.")
+            break
+        }
+                
+        editScene.toggle()
+        setEditing(editScene, animated: true)
+
     }
     
     @objc func createNote() {
@@ -84,8 +103,11 @@ class ViewController: UITableViewController {
         }
     }
     
+    @objc func deleteAllNotes() {
+    }
+    
     @objc func deleteNotes() {
-        print("will do the magic to delete the notes")
+        
     }
     
     // MARK: Table View Controller Methods
@@ -95,13 +117,32 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "note", for: indexPath)
-        cell.textLabel?.text = notes[indexPath.row].content
+        
+        if let cell = cell as? NoteCell {
+            cell.noteDescription.text = ""
+            cell.noteTitle.text = notes[indexPath.row].content
+        }
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        openDetailViewController(noteIndex: indexPath.row)
+        if tableView.isEditing {
+            toolbarItems = [space, deleteSelectedNotesButton]
+
+        } else {
+            openDetailViewController(noteIndex: indexPath.row)
+            
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if tableView.isEditing {
+            if tableView.indexPathsForSelectedRows == nil || tableView.indexPathsForSelectedRows!.isEmpty {
+                toolbarItems = [space, deleteAllNotesButton]
+
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -129,5 +170,9 @@ class ViewController: UITableViewController {
             detailVC.noteIndex = noteIndex
             navigationController?.pushViewController(detailVC, animated: true)
         }
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
     }
 }

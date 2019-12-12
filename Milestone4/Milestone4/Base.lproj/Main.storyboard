@@ -11,18 +11,43 @@
         <scene sceneID="DkY-gZ-0Fx">
             <objects>
                 <tableViewController id="sFe-2R-5sE" customClass="ViewController" customModule="Milestone4" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6HT-2U-NLa">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6HT-2U-NLa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="note" id="7rX-rp-e2m">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="note" rowHeight="64" id="7rX-rp-e2m" customClass="NoteCell" customModule="Milestone4" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7rX-rp-e2m" id="Qht-2F-DsR">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="One" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70w-Q7-4nu">
+                                            <rect key="frame" x="20" y="11" width="32" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KSb-81-jD9">
+                                            <rect key="frame" x="20" y="34" width="32" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="70w-Q7-4nu" firstAttribute="leading" secondItem="Qht-2F-DsR" secondAttribute="leadingMargin" id="6b2-eA-SLi"/>
+                                        <constraint firstItem="KSb-81-jD9" firstAttribute="top" secondItem="70w-Q7-4nu" secondAttribute="bottom" constant="2" id="9sr-mT-ho1"/>
+                                        <constraint firstItem="70w-Q7-4nu" firstAttribute="top" secondItem="Qht-2F-DsR" secondAttribute="topMargin" id="bqK-mL-i7f"/>
+                                        <constraint firstItem="70w-Q7-4nu" firstAttribute="centerX" secondItem="KSb-81-jD9" secondAttribute="centerX" id="v5d-nn-oBh"/>
+                                        <constraint firstItem="70w-Q7-4nu" firstAttribute="leading" secondItem="KSb-81-jD9" secondAttribute="leading" id="xcP-Vb-AB0"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="noteDescription" destination="KSb-81-jD9" id="MLX-Gg-UqV"/>
+                                    <outlet property="noteTitle" destination="70w-Q7-4nu" id="wux-Fo-Hdx"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -32,7 +57,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="VNR-7u-KHK">
                         <barButtonItem key="rightBarButtonItem" title="Item" style="done" id="Zaa-Yv-l91">
-                            <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="editingScene:" destination="sFe-2R-5sE" id="Jju-Me-bc4"/>
                             </connections>
