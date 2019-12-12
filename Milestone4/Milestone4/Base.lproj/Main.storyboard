@@ -30,7 +30,17 @@
                             <outlet property="delegate" destination="sFe-2R-5sE" id="lyw-9v-xtf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="VNR-7u-KHK"/>
+                    <navigationItem key="navigationItem" id="VNR-7u-KHK">
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="done" id="Zaa-Yv-l91">
+                            <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="editingScene:" destination="sFe-2R-5sE" id="Jju-Me-bc4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="editButton" destination="Zaa-Yv-l91" id="DU8-ZV-sxN"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RN0-q0-A5z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
