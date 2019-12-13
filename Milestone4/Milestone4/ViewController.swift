@@ -108,7 +108,9 @@ class ViewController: UITableViewController {
     @objc func deleteAllNotes() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let destroyAction = UIAlertAction(title: "Delete", style: .destructive)
+        let destroyAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            self?.deleteAll()
+        }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
         alert.addAction(destroyAction)
@@ -121,6 +123,10 @@ class ViewController: UITableViewController {
     @objc func deleteNotes() {
         print("deleteNotes")
         print(tableView.indexPathsForSelectedRows)
+        
+    }
+    
+    func deleteAll() {
         
     }
     
