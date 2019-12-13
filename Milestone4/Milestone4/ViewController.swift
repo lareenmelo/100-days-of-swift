@@ -124,7 +124,10 @@ class ViewController: UITableViewController {
         let alert = UIAlertController(title: "Delete Notes", message: "Are you sure you want to delete these notes? Once deleted you won't be able to see them again.", preferredStyle: .alert)
         
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+//            if let selectedRows = self.tableView.indexPathsForSelectedRows {
             self.deleteSelected()
+
+            
             
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -156,9 +159,11 @@ class ViewController: UITableViewController {
     }
     
     func deleteSelected() {
-        guard let indexes = tableView.indexPathsForSelectedRows else { return }
-        
-        for index in indexes {
+        guard let selectedIndexes = tableView.indexPathsForSelectedRows else { return }
+        var rows = selectedIndexes
+        rows.sort(by: >)
+
+        for index in rows {
             notes.remove(at: index.row)
         }
         
@@ -216,7 +221,7 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             notes.remove(at: indexPath.row)
-
+            
             DispatchQueue.global().async { [weak self] in
                 if let notes = self?.notes {
                     Defaults.save(notes: notes)
