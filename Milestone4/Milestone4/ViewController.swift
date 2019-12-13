@@ -6,9 +6,6 @@
 //  Copyright © 2019 Lareen Melo. All rights reserved.
 //
 
-// TODO
-//   2. When one item selected, change label to delete instead of delete all.
-
 import UIKit
 
 class ViewController: UITableViewController {
@@ -65,10 +62,14 @@ class ViewController: UITableViewController {
 
     }
     
+    // MARK: Editing Scene
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+    }
+    
     @IBAction func editingScene(_ sender: Any) {
         guard let title = (sender as! UIBarButtonItem).title else { return }
 
-        print(editScene)
         switch(title) {
         case "Edit":
             toolbarItems = [space, deleteAllNotesButton]
@@ -86,6 +87,7 @@ class ViewController: UITableViewController {
 
     }
     
+    // MARK: Note Handlers
     @objc func createNote() {
         let newNote = Note(content: "")
         notes.append(newNote)
@@ -104,9 +106,21 @@ class ViewController: UITableViewController {
     }
     
     @objc func deleteAllNotes() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let destroyAction = UIAlertAction(title: "Delete", style: .destructive)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(destroyAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
+        
     }
     
     @objc func deleteNotes() {
+        print("deleteNotes")
+        print(tableView.indexPathsForSelectedRows)
         
     }
     
@@ -126,6 +140,7 @@ class ViewController: UITableViewController {
         return cell
     }
     
+    // MARK: Cell Interaction
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.isEditing {
             toolbarItems = [space, deleteSelectedNotesButton]
@@ -170,9 +185,5 @@ class ViewController: UITableViewController {
             detailVC.noteIndex = noteIndex
             navigationController?.pushViewController(detailVC, animated: true)
         }
-    }
-    
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
     }
 }
