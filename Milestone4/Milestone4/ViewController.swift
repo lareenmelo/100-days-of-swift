@@ -127,7 +127,22 @@ class ViewController: UITableViewController {
     }
     
     func deleteAll() {
+        notes.removeAll()
         
+        DispatchQueue.global().async { [weak self] in
+            if let notes = self?.notes {
+                Defaults.save(notes: notes)
+                
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            }
+        }
+        
+        setEditing(false, animated: true)
+        editScene.toggle()
+        toolbarItems = [space, totalNotes, space, composeButton]
+
     }
     
     // MARK: Table View Controller Methods
