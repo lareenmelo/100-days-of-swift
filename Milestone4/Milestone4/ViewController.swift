@@ -121,8 +121,18 @@ class ViewController: UITableViewController {
     }
     
     @objc func deleteNotes() {
-        print("deleteNotes")
-        print(tableView.indexPathsForSelectedRows)
+        let alert = UIAlertController(title: "Delete Notes", message: "Are you sure you want to delete these notes? Once deleted you won't be able to see them again.", preferredStyle: .alert)
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+            self.deleteSelected()
+            
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
         
     }
     
@@ -143,6 +153,28 @@ class ViewController: UITableViewController {
         editScene.toggle()
         toolbarItems = [space, totalNotes, space, composeButton]
 
+    }
+    
+    func deleteSelected() {
+        guard let indexes = tableView.indexPathsForSelectedRows else { return }
+        
+        for index in indexes {
+            notes.remove(at: index.row)
+        }
+        
+        DispatchQueue.global().async { [weak self] in
+            if let notes = self?.notes {
+                Defaults.save(notes: notes)
+                
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            }
+        }
+        
+        setEditing(false, animated: true)
+        editScene.toggle()
+        toolbarItems = [space, totalNotes, space, composeButton]
     }
     
     // MARK: Table View Controller Methods
