@@ -11,7 +11,7 @@
         <scene sceneID="DkY-gZ-0Fx">
             <objects>
                 <tableViewController id="sFe-2R-5sE" customClass="ViewController" customModule="Milestone4" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6HT-2U-NLa">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="56" sectionHeaderHeight="28" sectionFooterHeight="28" id="6HT-2U-NLa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -23,6 +23,12 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yesterday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHz-N0-1sf">
+                                            <rect key="frame" x="20" y="34" width="56" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="One" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70w-Q7-4nu">
                                             <rect key="frame" x="20" y="11" width="32" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -30,7 +36,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KSb-81-jD9">
-                                            <rect key="frame" x="20" y="34" width="32" height="15"/>
+                                            <rect key="frame" x="84" y="34" width="32" height="15"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -39,12 +45,16 @@
                                     <constraints>
                                         <constraint firstItem="70w-Q7-4nu" firstAttribute="leading" secondItem="Qht-2F-DsR" secondAttribute="leadingMargin" id="6b2-eA-SLi"/>
                                         <constraint firstItem="KSb-81-jD9" firstAttribute="top" secondItem="70w-Q7-4nu" secondAttribute="bottom" constant="2" id="9sr-mT-ho1"/>
+                                        <constraint firstItem="AHz-N0-1sf" firstAttribute="baseline" secondItem="KSb-81-jD9" secondAttribute="baseline" id="F3F-8S-KCM"/>
+                                        <constraint firstItem="70w-Q7-4nu" firstAttribute="leading" secondItem="AHz-N0-1sf" secondAttribute="leading" id="K3r-sk-RnP"/>
                                         <constraint firstItem="70w-Q7-4nu" firstAttribute="top" secondItem="Qht-2F-DsR" secondAttribute="topMargin" id="bqK-mL-i7f"/>
-                                        <constraint firstItem="70w-Q7-4nu" firstAttribute="centerX" secondItem="KSb-81-jD9" secondAttribute="centerX" id="v5d-nn-oBh"/>
-                                        <constraint firstItem="70w-Q7-4nu" firstAttribute="leading" secondItem="KSb-81-jD9" secondAttribute="leading" id="xcP-Vb-AB0"/>
+                                        <constraint firstItem="KSb-81-jD9" firstAttribute="leading" secondItem="AHz-N0-1sf" secondAttribute="trailing" constant="8" id="djT-mL-6js"/>
+                                        <constraint firstItem="70w-Q7-4nu" firstAttribute="centerX" secondItem="KSb-81-jD9" secondAttribute="centerX" constant="-64" id="v5d-nn-oBh"/>
+                                        <constraint firstItem="70w-Q7-4nu" firstAttribute="leading" secondItem="KSb-81-jD9" secondAttribute="leading" constant="-64" id="xcP-Vb-AB0"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="creationDate" destination="AHz-N0-1sf" id="6MS-44-ov6"/>
                                     <outlet property="noteDescription" destination="KSb-81-jD9" id="MLX-Gg-UqV"/>
                                     <outlet property="noteTitle" destination="70w-Q7-4nu" id="wux-Fo-Hdx"/>
                                 </connections>
