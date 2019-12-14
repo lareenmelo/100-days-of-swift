@@ -247,7 +247,6 @@ class ViewController: UITableViewController {
         let bundle = Bundle(for: ViewController.self)
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
         if let detailVC = storyboard.instantiateViewController(identifier: "DetailViewController") as? DetailViewController {
-//            detailVC.notes = notes
             detailVC.notesStorageDelegate = self
             detailVC.selectedNote = selectedNote
             detailVC.noteIndex = noteIndex
