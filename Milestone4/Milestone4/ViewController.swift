@@ -170,7 +170,7 @@ class ViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "note", for: indexPath)
         
         if let cell = cell as? NoteCell {
-            cell.noteDescription.text = ""
+            cell.noteDescription.text = "testing it now LOL"
             cell.noteTitle.text = notes[indexPath.row].content
             cell.creationDate.text = formatDate(notes[indexPath.row].creationDate)
         }
@@ -222,16 +222,28 @@ class ViewController: UITableViewController {
         let formatter = DateFormatter()
         let calendar = Calendar.current
         
-        // TODO: add case for when it's within the week but not current day
-        if calendar.isDateInToday(date) {
-            formatter.timeStyle = .short
-            
-        } else if calendar.isDateInYesterday(date) {
-            return "Yesterday"
+        let weekDateComponents = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())
+        
+        guard let week = calendar.date(from: weekDateComponents) else {return "Failed to find Week @formatDate"}
+
+        guard let sunday = calendar.date(byAdding: .day, value: 7, to: week) else { return "Failed to find end of week @formatDate" }
+        guard let monday = calendar.date(byAdding: .day, value: 1, to: week) else { return "Failed to find start of week @formatDate" }
+
+        print(date)
+        if date <= sunday && date >= monday {
+
+            if calendar.isDateInToday(date) {
+                formatter.timeStyle = .short
+                
+            } else if calendar.isDateInYesterday(date) {
+                return "Yesterday"
+                
+            } else {
+                formatter.dateFormat = "EEEE"
+            }
             
         } else {
             formatter.dateStyle = .short
-
         }
 
         return formatter.string(from: date)
