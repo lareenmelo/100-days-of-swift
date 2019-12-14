@@ -102,7 +102,7 @@ class ViewController: UITableViewController {
     
     // MARK: Note Handlers
     @objc func createNote() {
-        let newNote = Note(content: "")
+        let newNote = Note(content: "", creationDate: Date())
         save(note: newNote)
         
         openDetailViewController(selectedNote: newNote, noteIndex: notes.count - 1)
@@ -172,6 +172,7 @@ class ViewController: UITableViewController {
         if let cell = cell as? NoteCell {
             cell.noteDescription.text = ""
             cell.noteTitle.text = notes[indexPath.row].content
+            cell.creationDate.text = formatDate(notes[indexPath.row].creationDate)
         }
         
         return cell
@@ -216,6 +217,25 @@ class ViewController: UITableViewController {
             navigationController?.pushViewController(detailVC, animated: true)
         }
     }
+    
+    func formatDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        let calendar = Calendar.current
+        
+        // TODO: add case for when it's within the week but not current day
+        if calendar.isDateInToday(date) {
+            formatter.timeStyle = .short
+            
+        } else if calendar.isDateInYesterday(date) {
+            return "Yesterday"
+            
+        } else {
+            formatter.dateStyle = .short
+
+        }
+
+        return formatter.string(from: date)
+    }
 }
 
 extension ViewController: NoteStorageDelegate {
@@ -229,7 +249,6 @@ extension ViewController: NoteStorageDelegate {
     
     func deleteNote(at index: Int) {
         notes.remove(at: index)
-        
     }
     
     func note(at index: Int) -> Note {

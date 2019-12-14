@@ -11,7 +11,6 @@ import UIKit
 class DetailViewController: UIViewController, UITextViewDelegate {
     let userDefaults = UserDefaults.standard
     @IBOutlet var noteTextView: UITextView!
-    var notes = [Note]()
     
     var selectedNote: Note!
     var noteIndex: Int!
