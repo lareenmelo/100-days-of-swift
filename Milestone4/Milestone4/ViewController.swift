@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UITableViewController {
-    var _notes: [Note] {
+    var notes: [Note] {
         get {
         return Defaults.load()
         }
@@ -18,7 +18,6 @@ class ViewController: UITableViewController {
         }
     }
     
-    var notes = [Note]()
     let userDefaults = UserDefaults.standard
     
     // MARK: Navigation Items Declaration
@@ -104,25 +103,9 @@ class ViewController: UITableViewController {
     // MARK: Note Handlers
     @objc func createNote() {
         let newNote = Note(content: "")
-        notes.append(newNote)
         save(note: newNote)
         
-        
-        save(note: newNote)
         openDetailViewController(selectedNote: newNote, noteIndex: notes.count - 1)
-        
-        
-        // TODO: add priority
-//        DispatchQueue.global().async { [weak self] in
-//            if let notes = self?.notes {
-//                Defaults.save(notes: notes)
-//
-//                DispatchQueue.main.async {
-//                    self?.openDetailViewController(selectedNote: newNote, noteIndex: notes.count - 1)
-//
-//                }
-//            }
-//        }
     }
     
     @objc func deleteAllNotes() {
@@ -159,17 +142,8 @@ class ViewController: UITableViewController {
     
     func deleteAll() {
         notes.removeAll()
-        
-//        DispatchQueue.global().async { [weak self] in
-//            if let notes = self?.notes {
-                Defaults.save(notes: notes)
-                
-//                DispatchQueue.main.async {
-                    tableView.reloadData()
-//                }
-//            }
-//        }
-        
+        tableView.reloadData()
+
         quitEditingScene()
     }
     
@@ -178,21 +152,12 @@ class ViewController: UITableViewController {
         guard let selectedIndexes = tableView.indexPathsForSelectedRows else { return }
         var rows = selectedIndexes
         rows.sort(by: >)
-
+        
         for index in rows {
             notes.remove(at: index.row)
         }
         
-//        DispatchQueue.global().async { [weak self] in
-//            if let notes = self?.notes {
-                Defaults.save(notes: notes)
-                
-//                DispatchQueue.main.async {
-                    tableView.reloadData()
-//                }
-//            }
-//        }
-        
+        tableView.reloadData()
         quitEditingScene()
     }
     
@@ -234,20 +199,12 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            notes.remove(at: indexPath.row)
+            deleteNote(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
             
-//            DispatchQueue.global().async { [weak self] in
-//                if let notes = self?.notes {
-                    Defaults.save(notes: notes)
-                    
-//                    DispatchQueue.main.async {
-                        tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 
-//                    }
-                }
-            }
-//        }
-//    }
     
     func openDetailViewController(selectedNote: Note, noteIndex: Int) {
         let bundle = Bundle(for: ViewController.self)
@@ -263,19 +220,20 @@ class ViewController: UITableViewController {
 
 extension ViewController: NoteStorageDelegate {
     func save(note: Note) {
-        _notes.append(note)
+        notes.append(note)
     }
     
     func update(note: Note, at index: Int) {
-        _notes[index] = note
+        notes[index] = note
     }
     
     func deleteNote(at index: Int) {
-        _notes.remove(at: index)
+        notes.remove(at: index)
         
     }
+    
     func note(at index: Int) -> Note {
-        return _notes[index]
+        return notes[index]
         
     }
 
