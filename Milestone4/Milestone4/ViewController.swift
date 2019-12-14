@@ -106,17 +106,23 @@ class ViewController: UITableViewController {
         let newNote = Note(content: "")
         notes.append(newNote)
         save(note: newNote)
+        
+        
+        save(note: newNote)
+        openDetailViewController(selectedNote: newNote, noteIndex: notes.count - 1)
+        
+        
         // TODO: add priority
-        DispatchQueue.global().async { [weak self] in
-            if let notes = self?.notes {
-                Defaults.save(notes: notes)
-                
-                DispatchQueue.main.async {
-                    self?.openDetailViewController(selectedNote: newNote, noteIndex: notes.count - 1)
-                    
-                }
-            }
-        }
+//        DispatchQueue.global().async { [weak self] in
+//            if let notes = self?.notes {
+//                Defaults.save(notes: notes)
+//
+//                DispatchQueue.main.async {
+//                    self?.openDetailViewController(selectedNote: newNote, noteIndex: notes.count - 1)
+//
+//                }
+//            }
+//        }
     }
     
     @objc func deleteAllNotes() {
@@ -262,6 +268,15 @@ extension ViewController: NoteStorageDelegate {
     
     func update(note: Note, at index: Int) {
         _notes[index] = note
+    }
+    
+    func deleteNote(at index: Int) {
+        _notes.remove(at: index)
+        
+    }
+    func note(at index: Int) -> Note {
+        return _notes[index]
+        
     }
 
 }

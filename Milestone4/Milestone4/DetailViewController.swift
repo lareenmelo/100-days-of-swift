@@ -37,13 +37,8 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        if noteTextView.text.isEmpty {
-//            notes.remove(at: noteIndex)
-////            saveNote()
-//        }
-//        saveNote()
-
-
+        selectedNote.content = noteTextView.text
+        notesStorageDelegate.update(note: selectedNote, at: noteIndex)
 
         // TODO: if view controller dismissed and note is empty, delete.
         
@@ -62,14 +57,6 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     
     func saveNote() {
         notesStorageDelegate.update(note: selectedNote, at: noteIndex)
-        // TODO: add priority
-//        DispatchQueue.main.async { [weak self] in
-//            if let notes = self?.notes {
-//                Defaults.save(notes: notes)
-//
-//            }
-//        }
-        
         
     }
     
@@ -79,8 +66,4 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         ac.popoverPresentationController?.barButtonItem = shareButton
         present(ac, animated: true)
     }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-    }
-    
 }

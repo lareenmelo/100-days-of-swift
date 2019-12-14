@@ -14,4 +14,6 @@ protocol NoteStorageDelegate {
     
     func save(note: Note)
     func update(note: Note, at index: Int)
+    func deleteNote(at index: Int)
+    func note(at indext: Int) -> Note
 }
