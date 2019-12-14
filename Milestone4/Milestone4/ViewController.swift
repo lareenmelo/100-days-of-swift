@@ -9,6 +9,14 @@
 import UIKit
 
 class ViewController: UITableViewController {
+    var _notes: [Note] {
+        get {
+        return Defaults.load()
+        }
+        set {
+            Defaults.save(notes: newValue)
+        }
+    }
     
     var notes = [Note]()
     let userDefaults = UserDefaults.standard
@@ -45,15 +53,14 @@ class ViewController: UITableViewController {
         space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         deleteAllNotesButton = UIBarButtonItem(title: "Delete All", style: .plain, target: self, action: #selector(deleteAllNotes))
         deleteSelectedNotesButton = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteNotes))
-
         // FIXME: notes aren't being updated.
         totalNotes = UIBarButtonItem(title: "\(notes.count) Notes", style: .plain, target: self, action: nil)
         
         // TODO: init two arrays here.
-        
         toolbarItems = [space, totalNotes, space, composeButton]
         navigationItem.rightBarButtonItem = editButton
         navigationController?.isToolbarHidden = false
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,18 +94,25 @@ class ViewController: UITableViewController {
 
     }
     
+    func quitEditingScene() {
+        setEditing(false, animated: true)
+        editScene.toggle()
+        toolbarItems = [space, totalNotes, space, composeButton]
+        
+    }
+    
     // MARK: Note Handlers
     @objc func createNote() {
         let newNote = Note(content: "")
         notes.append(newNote)
-        
+        save(note: newNote)
         // TODO: add priority
         DispatchQueue.global().async { [weak self] in
             if let notes = self?.notes {
                 Defaults.save(notes: notes)
                 
                 DispatchQueue.main.async {
-                    self?.openDetailViewController(noteIndex: notes.count - 1)
+                    self?.openDetailViewController(selectedNote: newNote, noteIndex: notes.count - 1)
                     
                 }
             }
@@ -123,13 +137,11 @@ class ViewController: UITableViewController {
     @objc func deleteNotes() {
         let alert = UIAlertController(title: "Delete Notes", message: "Are you sure you want to delete these notes? Once deleted you won't be able to see them again.", preferredStyle: .alert)
         
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
-//            if let selectedRows = self.tableView.indexPathsForSelectedRows {
-            self.deleteSelected()
-
-            
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            self?.deleteSelected()
             
         }
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
         alert.addAction(deleteAction)
@@ -142,23 +154,21 @@ class ViewController: UITableViewController {
     func deleteAll() {
         notes.removeAll()
         
-        DispatchQueue.global().async { [weak self] in
-            if let notes = self?.notes {
+//        DispatchQueue.global().async { [weak self] in
+//            if let notes = self?.notes {
                 Defaults.save(notes: notes)
                 
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
-            }
-        }
+//                DispatchQueue.main.async {
+                    tableView.reloadData()
+//                }
+//            }
+//        }
         
-        setEditing(false, animated: true)
-        editScene.toggle()
-        toolbarItems = [space, totalNotes, space, composeButton]
-
+        quitEditingScene()
     }
     
     func deleteSelected() {
+        // FIXME: find more elegant solution to the index order issues
         guard let selectedIndexes = tableView.indexPathsForSelectedRows else { return }
         var rows = selectedIndexes
         rows.sort(by: >)
@@ -167,19 +177,17 @@ class ViewController: UITableViewController {
             notes.remove(at: index.row)
         }
         
-        DispatchQueue.global().async { [weak self] in
-            if let notes = self?.notes {
+//        DispatchQueue.global().async { [weak self] in
+//            if let notes = self?.notes {
                 Defaults.save(notes: notes)
                 
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
-            }
-        }
+//                DispatchQueue.main.async {
+                    tableView.reloadData()
+//                }
+//            }
+//        }
         
-        setEditing(false, animated: true)
-        editScene.toggle()
-        toolbarItems = [space, totalNotes, space, composeButton]
+        quitEditingScene()
     }
     
     // MARK: Table View Controller Methods
@@ -204,7 +212,7 @@ class ViewController: UITableViewController {
             toolbarItems = [space, deleteSelectedNotesButton]
 
         } else {
-            openDetailViewController(noteIndex: indexPath.row)
+            openDetailViewController(selectedNote: notes[indexPath.row], noteIndex: indexPath.row)
             
         }
     }
@@ -222,26 +230,39 @@ class ViewController: UITableViewController {
         if editingStyle == .delete {
             notes.remove(at: indexPath.row)
             
-            DispatchQueue.global().async { [weak self] in
-                if let notes = self?.notes {
+//            DispatchQueue.global().async { [weak self] in
+//                if let notes = self?.notes {
                     Defaults.save(notes: notes)
                     
-                    DispatchQueue.main.async {
+//                    DispatchQueue.main.async {
                         tableView.deleteRows(at: [indexPath], with: .fade)
 
-                    }
+//                    }
                 }
             }
-        }
-    }
+//        }
+//    }
     
-    func openDetailViewController(noteIndex: Int) {
+    func openDetailViewController(selectedNote: Note, noteIndex: Int) {
         let bundle = Bundle(for: ViewController.self)
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
         if let detailVC = storyboard.instantiateViewController(identifier: "DetailViewController") as? DetailViewController {
-            detailVC.notes = notes
+//            detailVC.notes = notes
+            detailVC.notesStorageDelegate = self
+            detailVC.selectedNote = selectedNote
             detailVC.noteIndex = noteIndex
             navigationController?.pushViewController(detailVC, animated: true)
         }
     }
+}
+
+extension ViewController: NoteStorageDelegate {
+    func save(note: Note) {
+        _notes.append(note)
+    }
+    
+    func update(note: Note, at index: Int) {
+        _notes[index] = note
+    }
+
 }
