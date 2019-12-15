@@ -36,9 +36,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // TODO: if view controller dismissed and note is empty, delete.
         // TODO: add validations as to when to save the notes
-        // FIXME: another row when not saved directly and just exitd out.
         
         if noteTextView.text == "" {
             notesStorageDelegate.deleteNote(at: noteIndex)
