@@ -172,10 +172,15 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "note", for: indexPath)
         
+        let note = notes[indexPath.row]
+        let noteSplit = note.content.split(separator: "\n", maxSplits: 2, omittingEmptySubsequences: true)
+        
+        print(noteSplit)
+        
         if let cell = cell as? NoteCell {
-            cell.noteDescription.text = "testing it now LOL"
-            cell.noteTitle.text = notes[indexPath.row].content
-            cell.creationDate.text = formatDate(notes[indexPath.row].creationDate)
+            cell.noteDescription.text = splitSubtitle(noteSplit)
+            cell.noteTitle.text = splitTitle(noteSplit)
+            cell.creationDate.text = formatDate(note.creationDate)
         }
         
         return cell
@@ -250,6 +255,22 @@ class ViewController: UITableViewController {
         }
 
         return formatter.string(from: date)
+    }
+    
+
+    func splitTitle(_ split: [Substring]) -> String {
+        if split.count >= 1 {
+            return String(split[0])
+        }
+        return "New Note"
+        
+    }
+    
+    func splitSubtitle(_ split: [Substring]) -> String {
+        if split.count >= 2 {
+            return String(split[1])
+        }
+        return "No additional text"
     }
 }
 
