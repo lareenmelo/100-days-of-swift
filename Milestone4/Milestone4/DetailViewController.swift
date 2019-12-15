@@ -46,7 +46,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         // TODO: add validations as to when to save the notes
-        
+        guard noteIndex != nil else { return }
         if noteTextView.text == "" {
             notesStorageDelegate.deleteNote(at: noteIndex)
         } else {
@@ -74,12 +74,6 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     }
     
     @objc func createNewNote() {
-        /*
-         save current note just in case
-         create a new note on array with current date
-         then access the new notes content
-         and save note
-         */
         selectedNote.creationDate = Date()
         selectedNote.content = noteTextView.text
         saveNote()
@@ -96,12 +90,34 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     }
     
     @objc func deleteCurrentNote() {
-        print("Make sure to adopt the behavior notes has")
+        notesStorageDelegate.deleteNote(at: noteIndex)
+
+        let notes = notesStorageDelegate.notes.count
+        
+        if noteIndex < notes {
+            selectedNote = notesStorageDelegate.note(at: noteIndex)
+            noteTextView.text = selectedNote.content
+            return
+
+        } else if notes > 0 {
+            noteIndex = notes - 1
+            selectedNote = notesStorageDelegate.note(at: noteIndex)
+            noteTextView.text = selectedNote.content
+            return
+            
+        }
+        
+        noteIndex = nil
+        navigationController?.popViewController(animated: true)
+        
     }
     
     @objc func shareNote() {
-        // FIXME: element to share is the note content (test with phone)
-        let ac = UIActivityViewController(activityItems: ["hey, where my ppl at?"], applicationActivities: [])
+        selectedNote.creationDate = Date()
+        selectedNote.content = noteTextView.text
+        notesStorageDelegate.update(note: selectedNote, at: noteIndex)
+        
+        let ac = UIActivityViewController(activityItems: [selectedNote.content], applicationActivities: [])
         ac.popoverPresentationController?.barButtonItem = shareButton
         present(ac, animated: true)
     }
