@@ -52,7 +52,6 @@ class ViewController: UITableViewController {
         space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         deleteAllNotesButton = UIBarButtonItem(title: "Delete All", style: .plain, target: self, action: #selector(deleteAllNotes))
         deleteSelectedNotesButton = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteNotes))
-        // FIXME: notes aren't being updated.
         totalNotes = UIBarButtonItem(title: "\(notes.count) Notes", style: .plain, target: self, action: nil)
         
         // TODO: init two arrays here.
@@ -174,9 +173,7 @@ class ViewController: UITableViewController {
         
         let note = notes[indexPath.row]
         let noteSplit = note.content.split(separator: "\n", maxSplits: 2, omittingEmptySubsequences: true)
-        
-        print(noteSplit)
-        
+                
         if let cell = cell as? NoteCell {
             cell.noteDescription.text = splitSubtitle(noteSplit)
             cell.noteTitle.text = splitTitle(noteSplit)
