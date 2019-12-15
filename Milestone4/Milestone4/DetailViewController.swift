@@ -39,9 +39,13 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         // TODO: if view controller dismissed and note is empty, delete.
         // TODO: add validations as to when to save the notes
         // FIXME: another row when not saved directly and just exitd out.
-        selectedNote.content = noteTextView.text
-        notesStorageDelegate.update(note: selectedNote, at: noteIndex)
         
+        if noteTextView.text == "" {
+            notesStorageDelegate.deleteNote(at: noteIndex)
+        } else {
+            selectedNote.content = noteTextView.text
+            notesStorageDelegate.update(note: selectedNote, at: noteIndex)
+        }
     }
 
     
