@@ -28,12 +28,12 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(doneEditing))
+        saveButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneEditing))
         shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareNote))
         createNote = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(createNewNote))
         deleteNote = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteCurrentNote))
         space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        navigationItem.rightBarButtonItems = [shareButton, saveButton]
+        navigationItem.rightBarButtonItems = [shareButton]
         
         toolbarItems = [deleteNote, space, createNote]
         navigationController?.isToolbarHidden = false
@@ -69,9 +69,6 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         }
         hideKeyboard()
 
-        
-//        navigationController?.popViewController(animated: true)
-        
     }
     
     func saveNote() {
@@ -82,6 +79,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     func hideKeyboard() {
         noteTextView.endEditing(true)
     }
+    
     @objc func createNewNote() {
         selectedNote.creationDate = Date()
         selectedNote.content = noteTextView.text
@@ -141,8 +139,12 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         if notification.name == UIResponder.keyboardWillHideNotification {
             noteTextView.contentInset = .zero
             saveNote()
+            navigationItem.rightBarButtonItems = [shareButton]
+
         } else {
             noteTextView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
+            navigationItem.rightBarButtonItems = [saveButton, shareButton]
+
         }
         
         noteTextView.scrollIndicatorInsets = noteTextView.contentInset
