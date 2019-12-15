@@ -54,25 +54,23 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         if noteTextView.text == "" {
             notesStorageDelegate.deleteNote(at: noteIndex)
         } else {
-            selectedNote.creationDate = Date()
-            selectedNote.content = noteTextView.text
-            notesStorageDelegate.update(note: selectedNote, at: noteIndex)
+            saveNote()
         }
     }
 
     
     @objc func doneEditing() {
-        if originalText != noteTextView.text {
-            selectedNote.creationDate = Date()
-            selectedNote.content = noteTextView.text
-            saveNote()
-        }
+        selectedNote.content = noteTextView.text
+        saveNote()
         hideKeyboard()
 
     }
     
     func saveNote() {
-        notesStorageDelegate.update(note: selectedNote, at: noteIndex)
+        if originalText != noteTextView.text {
+            selectedNote.creationDate = Date()
+            notesStorageDelegate.update(note: selectedNote, at: noteIndex)
+        }
         
     }
     
