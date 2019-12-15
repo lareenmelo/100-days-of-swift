@@ -67,8 +67,10 @@ class DetailViewController: UIViewController, UITextViewDelegate {
             selectedNote.content = noteTextView.text
             saveNote()
         }
+        hideKeyboard()
+
         
-        navigationController?.popViewController(animated: true)
+//        navigationController?.popViewController(animated: true)
         
     }
     
@@ -77,6 +79,9 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         
     }
     
+    func hideKeyboard() {
+        noteTextView.endEditing(true)
+    }
     @objc func createNewNote() {
         selectedNote.creationDate = Date()
         selectedNote.content = noteTextView.text
@@ -135,6 +140,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         
         if notification.name == UIResponder.keyboardWillHideNotification {
             noteTextView.contentInset = .zero
+            saveNote()
         } else {
             noteTextView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
         }
