@@ -16,6 +16,9 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     var noteIndex: Int!
     var shareButton: UIBarButtonItem!
     var saveButton: UIBarButtonItem!
+    var createNote: UIBarButtonItem!
+    var space: UIBarButtonItem!
+    var deleteNote: UIBarButtonItem!
     var originalText: String!
     var noteIsEmpty: Bool!
     
@@ -27,7 +30,13 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         
         saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(doneEditing))
         shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareNote))
+        createNote = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(createNewNote))
+        deleteNote = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteCurrentNote))
+        space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         navigationItem.rightBarButtonItems = [shareButton, saveButton]
+        
+        toolbarItems = [deleteNote, space, createNote]
+        navigationController?.isToolbarHidden = false
         
         originalText = selectedNote.content
         noteTextView.text = selectedNote.content
@@ -41,6 +50,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         if noteTextView.text == "" {
             notesStorageDelegate.deleteNote(at: noteIndex)
         } else {
+            selectedNote.creationDate = Date()
             selectedNote.content = noteTextView.text
             notesStorageDelegate.update(note: selectedNote, at: noteIndex)
         }
@@ -49,6 +59,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     
     @objc func doneEditing() {
         if originalText != noteTextView.text {
+            selectedNote.creationDate = Date()
             selectedNote.content = noteTextView.text
             saveNote()
         }
@@ -60,6 +71,32 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     func saveNote() {
         notesStorageDelegate.update(note: selectedNote, at: noteIndex)
         
+    }
+    
+    @objc func createNewNote() {
+        /*
+         save current note just in case
+         create a new note on array with current date
+         then access the new notes content
+         and save note
+         */
+        selectedNote.creationDate = Date()
+        selectedNote.content = noteTextView.text
+        saveNote()
+        
+        let newNote = Note(content: "", creationDate: Date())
+        notesStorageDelegate.save(note: newNote)
+        
+        noteIndex = notesStorageDelegate.notes.count - 1
+        originalText = ""
+        noteTextView.text = ""
+        
+        saveNote()
+
+    }
+    
+    @objc func deleteCurrentNote() {
+        print("Make sure to adopt the behavior notes has")
     }
     
     @objc func shareNote() {

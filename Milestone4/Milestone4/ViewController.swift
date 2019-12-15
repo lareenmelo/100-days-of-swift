@@ -235,6 +235,8 @@ class ViewController: UITableViewController {
         guard let sunday = calendar.date(byAdding: .day, value: 7, to: week) else { return "Failed to find end of week @formatDate" }
         guard let monday = calendar.date(byAdding: .day, value: 1, to: week) else { return "Failed to find start of week @formatDate" }
 
+        
+        // FIXME: it's adding today sunday as date greater than 7
         if date <= sunday && date >= monday {
 
             if calendar.isDateInToday(date) {
@@ -248,7 +250,8 @@ class ViewController: UITableViewController {
             }
             
         } else {
-            formatter.dateStyle = .short
+//            formatter.dateStyle = .short
+            formatter.timeStyle = .short
         }
 
         return formatter.string(from: date)
