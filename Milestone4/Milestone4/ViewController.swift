@@ -6,10 +6,6 @@
 //  Copyright © 2019 Lareen Melo. All rights reserved.
 //
 
-
-// sort notes
-// reaload data
-
 import UIKit
 
 class ViewController: UITableViewController {
@@ -69,6 +65,7 @@ class ViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         notes.sort(by: { $0.creationDate >= $1.creationDate })
         tableView.reloadData()
+        totalNotes.title = "\(notes.count) Notes"
 
     }
     
@@ -146,6 +143,7 @@ class ViewController: UITableViewController {
     
     func deleteAll() {
         notes.removeAll()
+        totalNotes.title = "\(notes.count) Notes"
         tableView.reloadData()
 
         quitEditingScene()
@@ -160,7 +158,8 @@ class ViewController: UITableViewController {
         for index in rows {
             notes.remove(at: index.row)
         }
-        
+
+        totalNotes.title = "\(notes.count) Notes"
         tableView.reloadData()
         quitEditingScene()
     }
@@ -205,6 +204,7 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             deleteNote(at: indexPath.row)
+            totalNotes.title = "\(notes.count) Notes"
             tableView.deleteRows(at: [indexPath], with: .automatic)
             
         }
