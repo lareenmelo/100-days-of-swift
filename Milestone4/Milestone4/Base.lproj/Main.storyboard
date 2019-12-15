@@ -41,13 +41,16 @@
                                                     <rect key="frame" x="0.0" y="28.5" width="366" height="19.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yesterday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHz-N0-1sf">
-                                                            <rect key="frame" x="0.0" y="2.5" width="56" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="2.5" width="64" height="14.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="M0W-92-kj0"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KSb-81-jD9">
-                                                            <rect key="frame" x="64" y="2.5" width="301" height="14.5"/>
+                                                            <rect key="frame" x="72" y="2.5" width="301" height="14.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -55,12 +58,12 @@
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KSb-81-jD9" secondAttribute="trailing" constant="1" id="GEB-Qh-vmV"/>
+                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KSb-81-jD9" secondAttribute="trailing" constant="-7" id="GEB-Qh-vmV"/>
+                                                        <constraint firstItem="AHz-N0-1sf" firstAttribute="baseline" secondItem="KSb-81-jD9" secondAttribute="baseline" id="IcQ-Ja-2bK"/>
                                                         <constraint firstItem="KSb-81-jD9" firstAttribute="centerY" secondItem="UFR-jU-hhH" secondAttribute="centerY" id="Nca-GA-2Zz"/>
-                                                        <constraint firstItem="AHz-N0-1sf" firstAttribute="leading" secondItem="UFR-jU-hhH" secondAttribute="leading" id="Yux-3Q-Ops"/>
-                                                        <constraint firstItem="KSb-81-jD9" firstAttribute="leading" secondItem="AHz-N0-1sf" secondAttribute="trailing" constant="8" id="boF-kA-MxS"/>
                                                         <constraint firstItem="KSb-81-jD9" firstAttribute="width" secondItem="UFR-jU-hhH" secondAttribute="width" multiplier="0.82" constant="1" id="la1-IN-GCR"/>
-                                                        <constraint firstItem="AHz-N0-1sf" firstAttribute="centerY" secondItem="UFR-jU-hhH" secondAttribute="centerY" id="zkD-kz-9zy"/>
+                                                        <constraint firstItem="KSb-81-jD9" firstAttribute="leading" secondItem="AHz-N0-1sf" secondAttribute="trailing" constant="8" id="n23-bM-gfR"/>
+                                                        <constraint firstItem="AHz-N0-1sf" firstAttribute="leading" secondItem="UFR-jU-hhH" secondAttribute="leading" id="o5D-vv-83w"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -87,7 +90,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="VNR-7u-KHK">
                         <barButtonItem key="rightBarButtonItem" title="Item" style="done" id="Zaa-Yv-l91">
-                            <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="editingScene:" destination="sFe-2R-5sE" id="Jju-Me-bc4"/>
                             </connections>
