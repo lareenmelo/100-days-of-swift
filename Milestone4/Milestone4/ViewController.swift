@@ -6,6 +6,10 @@
 //  Copyright © 2019 Lareen Melo. All rights reserved.
 //
 
+
+// sort notes
+// reaload data
+
 import UIKit
 
 class ViewController: UITableViewController {
@@ -63,7 +67,7 @@ class ViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        notes = Defaults.load()
+        notes.sort(by: { $0.creationDate >= $1.creationDate })
         tableView.reloadData()
 
     }
@@ -229,7 +233,6 @@ class ViewController: UITableViewController {
         guard let sunday = calendar.date(byAdding: .day, value: 7, to: week) else { return "Failed to find end of week @formatDate" }
         guard let monday = calendar.date(byAdding: .day, value: 1, to: week) else { return "Failed to find start of week @formatDate" }
 
-        print(date)
         if date <= sunday && date >= monday {
 
             if calendar.isDateInToday(date) {
