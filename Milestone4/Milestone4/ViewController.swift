@@ -94,6 +94,7 @@ class ViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        deleteEmptyNotes()
         notes.sort(by: { $0.creationDate >= $1.creationDate })
         tableView.reloadData()
         let notesCount = notes.count > 0 ? "\(notes.count)" : "No"
@@ -335,6 +336,14 @@ extension ViewController: NoteStorageDelegate {
     func note(at index: Int) -> Note {
         return notes[index]
         
+    }
+    
+    func deleteEmptyNotes() {
+        for index in 0...notes.count-1 {
+            if notes[index].content == "" {
+                deleteNote(at: index)
+            }
+        }
     }
 
 }
