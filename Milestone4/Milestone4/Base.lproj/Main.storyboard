@@ -33,7 +33,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="One" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70w-Q7-4nu">
                                                             <rect key="frame" x="0.0" y="0.0" width="366" height="20.5"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                                            <color key="textColor" white="0.2313784247" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="highlightedColor" white="0.2234232305936073" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </label>
                                                     </subviews>
@@ -91,7 +91,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="VNR-7u-KHK">
                         <barButtonItem key="rightBarButtonItem" title="Item" style="done" id="Zaa-Yv-l91">
-                            <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="0.98039215690000003" green="0.72549019609999998" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="editingScene:" destination="sFe-2R-5sE" id="Jju-Me-bc4"/>
                             </connections>
@@ -114,10 +114,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sNj-E4-ZWN">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="16" y="44" width="382" height="818"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.23137842465753425" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
                                     <outlet property="delegate" destination="7cP-gB-Z33" id="Kwp-mZ-jfl"/>
@@ -126,10 +126,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="BK1-XU-0YK" firstAttribute="trailing" secondItem="sNj-E4-ZWN" secondAttribute="trailing" id="3yS-8e-bLy"/>
+                            <constraint firstItem="BK1-XU-0YK" firstAttribute="trailing" secondItem="sNj-E4-ZWN" secondAttribute="trailing" constant="16" id="3yS-8e-bLy"/>
                             <constraint firstItem="sNj-E4-ZWN" firstAttribute="top" secondItem="BK1-XU-0YK" secondAttribute="top" id="7dg-If-KJ9"/>
                             <constraint firstItem="sNj-E4-ZWN" firstAttribute="centerY" secondItem="BK1-XU-0YK" secondAttribute="centerY" id="HbX-ke-YRL"/>
-                            <constraint firstItem="sNj-E4-ZWN" firstAttribute="leading" secondItem="BK1-XU-0YK" secondAttribute="leading" id="Lcy-PA-H2A"/>
+                            <constraint firstItem="sNj-E4-ZWN" firstAttribute="leading" secondItem="BK1-XU-0YK" secondAttribute="leading" constant="16" id="Lcy-PA-H2A"/>
                             <constraint firstItem="sNj-E4-ZWN" firstAttribute="centerX" secondItem="BK1-XU-0YK" secondAttribute="centerX" id="YUW-IY-p5x"/>
                             <constraint firstItem="BK1-XU-0YK" firstAttribute="bottom" secondItem="sNj-E4-ZWN" secondAttribute="bottom" id="nhM-dg-SBR"/>
                         </constraints>
@@ -162,5 +162,5 @@
             <point key="canvasLocation" x="111.59420289855073" y="124.55357142857142"/>
         </scene>
     </scenes>
-    <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    <color key="tintColor" red="0.98039215686274506" green="0.72549019607843135" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
