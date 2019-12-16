@@ -90,7 +90,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="VNR-7u-KHK">
                         <barButtonItem key="rightBarButtonItem" title="Item" style="done" id="Zaa-Yv-l91">
-                            <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="editingScene:" destination="sFe-2R-5sE" id="Jju-Me-bc4"/>
                             </connections>
@@ -161,4 +161,5 @@
             <point key="canvasLocation" x="111.59420289855073" y="124.55357142857142"/>
         </scene>
     </scenes>
+    <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

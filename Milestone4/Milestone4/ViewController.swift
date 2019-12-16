@@ -44,6 +44,7 @@ class ViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Notes"
         editButton.title = "Edit"
         tableView.allowsMultipleSelectionDuringEditing = true
         
