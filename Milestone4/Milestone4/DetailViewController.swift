@@ -55,7 +55,6 @@ class DetailViewController: UIViewController, UITextViewDelegate {
             notesStorageDelegate.deleteNote(at: noteIndex)
         } else {
             saveNote()
-            selectedNote.content = noteTextView.text
 
         }
     }
@@ -71,6 +70,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     func saveNote() {
         if originalText != noteTextView.text {
             selectedNote.creationDate = Date()
+            selectedNote.content = noteTextView.text
             notesStorageDelegate.update(note: selectedNote, at: noteIndex)
         }
         
@@ -157,7 +157,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
 
 
 /* TODO: monday
- - [ ] date is being presented wrong (make it as date has to be within 7 days of current days)
+ - [ X ] date is being presented wrong (make it as date has to be within 7 days of current days)
  - [ ] autosave
  - [ ] when to save text
  */
