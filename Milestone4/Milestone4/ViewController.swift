@@ -52,11 +52,12 @@ class ViewController: UITableViewController {
         // MARK: Navigation Controller Styling
         title = "Notes"
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.setBackgroundImage(background, for: .default)
-        navigationController?.navigationBar.setBackgroundImage(background, for: .defaultPrompt)
-        navigationController?.navigationBar.setBackgroundImage(background, for: .compact)
-        navigationController?.navigationBar.setBackgroundImage(background, for: .compactPrompt)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .defaultPrompt)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .compact)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .compactPrompt)
         navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.backgroundColor = UIColor(patternImage: background)
         navigationController?.navigationBar.isTranslucent = true
         
         // MARK: Tableview properties
@@ -65,9 +66,10 @@ class ViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         
         // MARK: Toolbar styling
-        navigationController?.toolbar.setBackgroundImage(UIImage(named: "white_background"), forToolbarPosition: .any, barMetrics: .default)
+        navigationController?.toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         navigationController?.toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
-        navigationController?.toolbar.backgroundColor = UIColor.clear
+        navigationController?.toolbar.backgroundColor = UIColor(patternImage: background)
+        navigationController?.toolbar.isTranslucent = true
         
         // MARK: Toolbar Items Inits
         composeButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(createNote))
@@ -79,9 +81,10 @@ class ViewController: UITableViewController {
         let notesCount = notes.count > 0 ? "\(notes.count)" : "No"
             totalNotes = UIBarButtonItem(title: "\(notesCount) Notes", style: .plain, target: self, action: nil)
 
+        guard let notesColor = UIColor(named: "notes_counter") else { return }
         totalNotes.setTitleTextAttributes([
-            NSAttributedString.Key.font : UIFont.systemFont(ofSize: 11),
-            NSAttributedString.Key.foregroundColor : UIColor.darkText
+            NSAttributedString.Key.font : UIFont.systemFont(ofSize: 12),
+            NSAttributedString.Key.foregroundColor : notesColor
             ], for: .normal)
         
         setTootlbarItemsColor()
@@ -94,7 +97,9 @@ class ViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        deleteEmptyNotes()
+        if notes.count > 1 {
+            deleteEmptyNotes()
+        }
         notes.sort(by: { $0.creationDate >= $1.creationDate })
         tableView.reloadData()
         let notesCount = notes.count > 0 ? "\(notes.count)" : "No"
@@ -346,4 +351,9 @@ extension ViewController: NoteStorageDelegate {
         }
     }
 
+}
+
+
+extension UIColor {
+    
 }
