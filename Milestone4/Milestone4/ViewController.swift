@@ -63,8 +63,6 @@ class ViewController: UITableViewController {
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.backgroundColor = UIColor(patternImage: background)
         tableView.tableFooterView = UIView()
-
-
         
         // MARK: Toolbar styling
         navigationController?.toolbar.setBackgroundImage(UIImage(named: "white_background"), forToolbarPosition: .any, barMetrics: .default)
@@ -78,7 +76,8 @@ class ViewController: UITableViewController {
         deleteSelectedNotesButton = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteNotes))
         
         // FIXME: remove high light when clicked
-        totalNotes = UIBarButtonItem(title: "\(notes.count) Notes", style: .plain, target: self, action: nil)
+        let notesCount = notes.count > 0 ? "\(notes.count)" : "No"
+            totalNotes = UIBarButtonItem(title: "\(notesCount) Notes", style: .plain, target: self, action: nil)
 
         totalNotes.setTitleTextAttributes([
             NSAttributedString.Key.font : UIFont.systemFont(ofSize: 11),
@@ -97,7 +96,9 @@ class ViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         notes.sort(by: { $0.creationDate >= $1.creationDate })
         tableView.reloadData()
-        totalNotes.title = "\(notes.count) Notes"
+        let notesCount = notes.count > 0 ? "\(notes.count)" : "No"
+
+        totalNotes.title = "\(notesCount) Notes"
 
     }
     
@@ -183,7 +184,9 @@ class ViewController: UITableViewController {
     
     func deleteAll() {
         notes.removeAll()
-        totalNotes.title = "\(notes.count) Notes"
+        let notesCount = notes.count > 0 ? "\(notes.count)" : "No"
+
+        totalNotes.title = "\(notesCount) Notes"
         tableView.reloadData()
 
         quitEditingScene()
@@ -199,7 +202,9 @@ class ViewController: UITableViewController {
             notes.remove(at: index.row)
         }
 
-        totalNotes.title = "\(notes.count) Notes"
+        let notesCount = notes.count > 0 ? "\(notes.count)" : "No"
+
+        totalNotes.title = "\(notesCount) Notes"
         tableView.reloadData()
         quitEditingScene()
     }
@@ -250,7 +255,9 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             deleteNote(at: indexPath.row)
-            totalNotes.title = "\(notes.count) Notes"
+            let notesCount = notes.count > 0 ? "\(notes.count)" : "No"
+
+            totalNotes.title = "\(notesCount) Notes"
             tableView.deleteRows(at: [indexPath], with: .automatic)
             
         }
@@ -326,6 +333,3 @@ extension ViewController: NoteStorageDelegate {
     }
 
 }
-
-
-// TODO: No note when there are no notes
