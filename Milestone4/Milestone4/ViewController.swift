@@ -42,19 +42,47 @@ class ViewController: UITableViewController {
         }
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        editButton.title = "Edit"
+
+        guard let background = UIImage(named: "white_background") else { return }
+
+        // MARK: Navigation Controller Styling
         title = "Notes"
         navigationController?.navigationBar.prefersLargeTitles = true
-        editButton.title = "Edit"
+        navigationController?.navigationBar.setBackgroundImage(background, for: .default)
+        navigationController?.navigationBar.setBackgroundImage(background, for: .defaultPrompt)
+        navigationController?.navigationBar.setBackgroundImage(background, for: .compact)
+        navigationController?.navigationBar.setBackgroundImage(background, for: .compactPrompt)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        
+        // MARK: Tableview properties
         tableView.allowsMultipleSelectionDuringEditing = true
+        tableView.backgroundColor = UIColor(patternImage: background)
+
+        
+        // MARK: Toolbar styling
+        navigationController?.toolbar.setBackgroundImage(UIImage(named: "white_background"), forToolbarPosition: .any, barMetrics: .default)
+        navigationController?.toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
+        navigationController?.toolbar.backgroundColor = UIColor.clear
         
         // MARK: Toolbar Items Inits
         composeButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(createNote))
         space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         deleteAllNotesButton = UIBarButtonItem(title: "Delete All", style: .plain, target: self, action: #selector(deleteAllNotes))
         deleteSelectedNotesButton = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteNotes))
+        
+        // FIXME: remove high light when clicked
         totalNotes = UIBarButtonItem(title: "\(notes.count) Notes", style: .plain, target: self, action: nil)
+
+        totalNotes.setTitleTextAttributes([
+            NSAttributedString.Key.font : UIFont.systemFont(ofSize: 11),
+            NSAttributedString.Key.foregroundColor : UIColor.darkText
+            ], for: .normal)
+        
         setTootlbarItemsColor()
         
         // TODO: init two arrays here.
@@ -73,7 +101,6 @@ class ViewController: UITableViewController {
     
     func setTootlbarItemsColor() {
         composeButton.tintColor = .systemYellow
-        totalNotes.tintColor = .systemYellow
         deleteAllNotesButton.tintColor = .systemYellow
         deleteSelectedNotesButton.tintColor = .systemYellow
 
@@ -293,3 +320,6 @@ extension ViewController: NoteStorageDelegate {
     }
 
 }
+
+
+// TODO: No note when there are no notes

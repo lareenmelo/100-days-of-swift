@@ -29,6 +29,8 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         // So in the detail view there's no space and the title is normal
         navigationItem.largeTitleDisplayMode = .never
+        guard let background = UIImage(named: "white_background") else { return }
+        self.view.backgroundColor = UIColor(patternImage: background)
 
         saveButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneEditing))
         shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareNote))
