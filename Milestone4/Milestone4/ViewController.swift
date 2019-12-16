@@ -221,6 +221,9 @@ class ViewController: UITableViewController {
             cell.creationDate.text = formatDate(note.creationDate)
         }
         
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.7254901961, blue: 0.1725490196, alpha: 1).withAlphaComponent(0.2)
+        cell.selectedBackgroundView = backgroundView
         return cell
     }
     
