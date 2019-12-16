@@ -27,7 +27,9 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // So in the detail view there's no space and the title is normal
+        navigationItem.largeTitleDisplayMode = .never
+
         saveButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneEditing))
         shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareNote))
         createNote = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(createNewNote))
