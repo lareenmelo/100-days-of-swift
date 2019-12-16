@@ -104,6 +104,7 @@ class ViewController: UITableViewController {
     
     func setTootlbarItemsColor() {
         let orangeColor = #colorLiteral(red: 0.9803921569, green: 0.7254901961, blue: 0.1725490196, alpha: 1)
+        totalNotes.tintColor = orangeColor
         composeButton.tintColor = orangeColor
         deleteAllNotesButton.tintColor = orangeColor
         deleteSelectedNotesButton.tintColor = orangeColor

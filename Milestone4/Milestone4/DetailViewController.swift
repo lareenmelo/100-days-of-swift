@@ -54,14 +54,10 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // TODO: add validations as to when to save the notes
-        guard noteIndex != nil else { return }
-        if noteTextView.text == "" {
-            notesStorageDelegate.deleteNote(at: noteIndex)
-        } else {
-            saveNote()
 
-        }
+        guard noteIndex != nil else { return }
+        saveNote()
+
     }
 
     func setToolbarItemsColor() {
@@ -72,19 +68,19 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     }
     
     @objc func doneEditing() {
-        selectedNote.content = noteTextView.text
         saveNote()
         hideKeyboard()
 
     }
     
-    func saveNote() {
-        if originalText != noteTextView.text {
+    func saveNote(newNote: Bool = false) {
+        if originalText != noteTextView.text || newNote {
+            originalText = noteTextView.text
             selectedNote.creationDate = Date()
-            selectedNote.content = noteTextView.text
+            selectedNote.content = originalText
+            
             notesStorageDelegate.update(note: selectedNote, at: noteIndex)
         }
-        
     }
     
     func hideKeyboard() {
@@ -92,8 +88,6 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     }
     
     @objc func createNewNote() {
-        selectedNote.creationDate = Date()
-        selectedNote.content = noteTextView.text
         saveNote()
         
         let newNote = Note(content: "", creationDate: Date())
@@ -103,7 +97,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         originalText = ""
         noteTextView.text = ""
         
-        saveNote()
+        saveNote(newNote: true)
 
     }
     
