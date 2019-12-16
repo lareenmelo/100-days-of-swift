@@ -157,9 +157,11 @@ class ViewController: UITableViewController {
             self?.deleteAll()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        
+
         alert.addAction(destroyAction)
         alert.addAction(cancelAction)
+        
+        alert.view.tintColor = #colorLiteral(red: 0.9803921569, green: 0.7254901961, blue: 0.1725490196, alpha: 1)
         
         present(alert, animated: true)
         
@@ -178,6 +180,8 @@ class ViewController: UITableViewController {
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)
         
+        alert.view.tintColor = #colorLiteral(red: 0.9803921569, green: 0.7254901961, blue: 0.1725490196, alpha: 1)
+
         present(alert, animated: true)
         
     }
