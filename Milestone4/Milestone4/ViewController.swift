@@ -62,6 +62,8 @@ class ViewController: UITableViewController {
         // MARK: Tableview properties
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.backgroundColor = UIColor(patternImage: background)
+        tableView.tableFooterView = UIView()
+
 
         
         // MARK: Toolbar styling
