@@ -54,6 +54,7 @@ class ViewController: UITableViewController {
         deleteAllNotesButton = UIBarButtonItem(title: "Delete All", style: .plain, target: self, action: #selector(deleteAllNotes))
         deleteSelectedNotesButton = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteNotes))
         totalNotes = UIBarButtonItem(title: "\(notes.count) Notes", style: .plain, target: self, action: nil)
+        setTootlbarItemsColor()
         
         // TODO: init two arrays here.
         toolbarItems = [space, totalNotes, space, composeButton]
@@ -66,6 +67,14 @@ class ViewController: UITableViewController {
         notes.sort(by: { $0.creationDate >= $1.creationDate })
         tableView.reloadData()
         totalNotes.title = "\(notes.count) Notes"
+
+    }
+    
+    func setTootlbarItemsColor() {
+        composeButton.tintColor = .systemYellow
+        totalNotes.tintColor = .systemYellow
+        deleteAllNotesButton.tintColor = .systemYellow
+        deleteSelectedNotesButton.tintColor = .systemYellow
 
     }
     

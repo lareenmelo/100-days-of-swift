@@ -33,6 +33,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         createNote = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(createNewNote))
         deleteNote = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteCurrentNote))
         space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        setToolbarItemsColor()
         navigationItem.rightBarButtonItems = [shareButton]
         
         toolbarItems = [deleteNote, space, createNote]
@@ -59,6 +60,11 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         }
     }
 
+    func setToolbarItemsColor() {
+        deleteNote.tintColor = .systemYellow
+        createNote.tintColor = .systemYellow
+
+    }
     
     @objc func doneEditing() {
         selectedNote.content = noteTextView.text
