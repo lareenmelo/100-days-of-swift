@@ -227,33 +227,22 @@ class ViewController: UITableViewController {
     func formatDate(_ date: Date) -> String {
         let formatter = DateFormatter()
         let calendar = Calendar.current
+        let daysSet: Set<Calendar.Component> = [.day]
+        guard let days = calendar.dateComponents(daysSet, from: Date(), to: date).day else { return "Couldn't calculate days @formatDate." }
         
-        let weekDateComponents = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())
-        
-        guard let week = calendar.date(from: weekDateComponents) else {return "Failed to find Week @formatDate"}
-
-        guard let sunday = calendar.date(byAdding: .day, value: 7, to: week) else { return "Failed to find end of week @formatDate" }
-        guard let monday = calendar.date(byAdding: .day, value: 1, to: week) else { return "Failed to find start of week @formatDate" }
-
-        
-        // FIXME: it's adding today sunday as date greater than 7
-        if date <= sunday && date >= monday {
-
+        if days <= 7 {
             if calendar.isDateInToday(date) {
                 formatter.timeStyle = .short
-                
             } else if calendar.isDateInYesterday(date) {
                 return "Yesterday"
                 
             } else {
                 formatter.dateFormat = "EEEE"
             }
-            
         } else {
-//            formatter.dateStyle = .short
-            formatter.timeStyle = .short
+            formatter.dateStyle = .short
         }
-
+        
         return formatter.string(from: date)
     }
     
