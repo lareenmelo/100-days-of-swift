@@ -14,6 +14,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     // lets us configure how we want to be notified about location and will deliver
     // location updates
     var locationManager: CLLocationManager?
+    var firstDetection: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +49,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         if let beacon = beacons.first {
             update(distance: beacon.proximity)
+            showFirstDetection()
+
         } else {
             update(distance: .unknown)
         }
@@ -73,5 +76,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 self.distanceReading.text = "UNKNOWN"
             }
         }
-    }}
+    }
+    
+    func showFirstDetection() {
+        if firstDetection {
+            firstDetection = false
+            let ac = UIAlertController(title: "Beacon detected", message: nil, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        }
+    }
+}
 
