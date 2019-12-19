@@ -9,28 +9,17 @@
 import UIKit
 
 class ViewController: UITableViewController {
+    let orangeColor = #colorLiteral(red: 0.9803921569, green: 0.7254901961, blue: 0.1725490196, alpha: 1)
+    // conforming to NoteStorageDelegate
     var notes: [Note] {
         get {
-        return Defaults.load()
+            return Defaults.load()
         }
         set {
             Defaults.save(notes: newValue)
         }
     }
     
-    let userDefaults = UserDefaults.standard
-    
-    // MARK: Navigation Items Declaration
-    @IBOutlet var editButton: UIBarButtonItem!
-    
-    // MARK: Toolbar Items Declaration
-    var composeButton: UIBarButtonItem!
-    var totalNotes: UIBarButtonItem!
-    var deleteAllNotesButton: UIBarButtonItem!
-    var deleteSelectedNotesButton: UIBarButtonItem!
-    // Empty button to replicate notes layout
-    var space: UIBarButtonItem!
-
     // Toggles editButton title so it goes along with the correct actions.
     var editScene: Bool = false {
         didSet {
@@ -41,7 +30,17 @@ class ViewController: UITableViewController {
             }
         }
     }
+        
+    // MARK: Navigation Items Declaration
+    @IBOutlet var editButton: UIBarButtonItem!
     
+    // MARK: Toolbar Items Declaration
+    var composeButton: UIBarButtonItem!
+    var totalNotes: UIBarButtonItem!
+    var deleteAllNotesButton: UIBarButtonItem!
+    var deleteSelectedNotesButton: UIBarButtonItem!
+    // Empty button to replicate notes layout
+    var space: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,7 +108,6 @@ class ViewController: UITableViewController {
     }
     
     func setTootlbarItemsColor() {
-        let orangeColor = #colorLiteral(red: 0.9803921569, green: 0.7254901961, blue: 0.1725490196, alpha: 1)
         totalNotes.tintColor = orangeColor
         composeButton.tintColor = orangeColor
         deleteAllNotesButton.tintColor = orangeColor
@@ -243,7 +241,7 @@ class ViewController: UITableViewController {
         return cell
     }
     
-    // MARK: Cell Interaction
+    // MARK: Table View Cell Interaction
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.isEditing {
             toolbarItems = [space, deleteSelectedNotesButton]
@@ -273,8 +271,38 @@ class ViewController: UITableViewController {
             
         }
     }
+}
 
+// MARK: Note Storage Delegate Methods
+extension ViewController: NoteStorageDelegate {
+    func save(note: Note) {
+        notes.append(note)
+    }
     
+    func update(note: Note, at index: Int) {
+        notes[index] = note
+    }
+    
+    func deleteNote(at index: Int) {
+        notes.remove(at: index)
+    }
+    
+    func note(at index: Int) -> Note {
+        return notes[index]
+        
+    }
+    
+    func deleteEmptyNotes() {
+        for index in 0...notes.count-1 {
+            if notes[index].content == "" {
+                deleteNote(at: index)
+            }
+        }
+    }
+}
+
+// MARK: Helpers
+extension ViewController {
     func openDetailViewController(selectedNote: Note, noteIndex: Int) {
         let bundle = Bundle(for: ViewController.self)
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
@@ -323,37 +351,4 @@ class ViewController: UITableViewController {
         }
         return "No additional text"
     }
-}
-
-extension ViewController: NoteStorageDelegate {
-    func save(note: Note) {
-        notes.append(note)
-    }
-    
-    func update(note: Note, at index: Int) {
-        notes[index] = note
-    }
-    
-    func deleteNote(at index: Int) {
-        notes.remove(at: index)
-    }
-    
-    func note(at index: Int) -> Note {
-        return notes[index]
-        
-    }
-    
-    func deleteEmptyNotes() {
-        for index in 0...notes.count-1 {
-            if notes[index].content == "" {
-                deleteNote(at: index)
-            }
-        }
-    }
-
-}
-
-
-extension UIColor {
-    
 }
