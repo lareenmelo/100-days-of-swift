@@ -78,3 +78,34 @@ let attributedString = NSAttributedString(string: string, attributes: attributes
 //attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 24), range: NSRange(location: 8, length: 1))
 //attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 32), range: NSRange(location: 10, length: 4))
 //attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 40), range: NSRange(location: 15, length: 6))
+
+
+extension String {
+    func withPrefix(_ prefix: String) -> String {
+        if self.hasPrefix(prefix) {
+            return self
+        } else {
+            return prefix + self
+        }
+    }
+}
+
+let test = "pet"
+print(test.withPrefix("car"))
+
+
+extension String {
+    var isNumeric: Bool {
+        return Double(self) != nil
+    }
+
+}
+
+let testingAgain = "123"
+print(testingAgain.isNumeric)
+
+extension String {
+    var lines: [Substring] {
+        return self.split(separator: "\n")
+    }
+}
