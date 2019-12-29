@@ -109,3 +109,46 @@ extension String {
         return self.split(separator: "\n")
     }
 }
+
+
+
+// Challenge #1
+extension UIView {
+    func bounceOut(_ duration: TimeInterval) {
+        UIView.animate(withDuration: duration) { [unowned self] in
+            self.transform = CGAffineTransform(scaleX: 0.0001, y: 0.0001)
+        }
+    }
+}
+
+
+let view = UIView()
+view.bounceOut(3)
+
+
+// Challenge #2
+extension Int {
+    func times(_ closure: () -> Void) {
+        guard self > 0 else { return }
+        for _ in 0 ..< self {
+            closure()
+        }
+        
+    }
+}
+
+5.times {
+    print("Day 82")
+}
+
+// Challenge #3
+extension Array where Element: Comparable {
+    mutating func remove(item: Element) {
+        if let location = self.firstIndex(of: item) {
+            self.remove(at: location)
+        }
+    }
+}
+
+var numbers = [1, 1, 3, 4, 5]
+numbers.remove(item: 1)
