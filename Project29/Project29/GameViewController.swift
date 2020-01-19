@@ -32,6 +32,7 @@ class GameViewController: UIViewController {
                 
                 // Present the scene
                 view.presentScene(scene)
+                
                 currentGame = scene as? GameScene
                 currentGame.viewController = self
             }
@@ -59,17 +60,17 @@ class GameViewController: UIViewController {
         return true
     }
     
-    @IBAction func angleChanged(_ sender: Any) {
+    @IBAction func angleChanged(_ sender: AnyObject) {
         angleLabel.text = "Angle: \(Int(angleSlider.value))°"
         
     }
     
-    @IBAction func velocityChanged(_ sender: Any) {
+    @IBAction func velocityChanged(_ sender: AnyObject) {
         velocityLabel.text = "Velocity: \(Int(velocitySlider.value))"
         
     }
     
-    @IBAction func launch(_ sender: Any) {
+    @IBAction func launch(_ sender: AnyObject) {
         angleSlider.isHidden = true
         angleLabel.isHidden = true
         
