@@ -19,8 +19,35 @@ class GameViewController: UIViewController {
     @IBOutlet var launchButton: UIButton!
     @IBOutlet var playerNumber: UILabel!
     
+    @IBOutlet var player1ScoreLabel: UILabel!
+    @IBOutlet var player2ScoreLabel: UILabel!
+    @IBOutlet var newGameButton: UIButton!
+    
+    var player1Score: Int = 0 {
+        didSet {
+            player1ScoreLabel.text = "Score: \(player1Score)"
+        }
+    }
+    var player2Score: Int = 0 {
+        didSet {
+            player2ScoreLabel.text = "Score: \(player2Score)"
+        }
+    }
+    
+    var gameStopped = false {
+        didSet {
+            newGameButton.isHidden = !gameStopped
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        gameStopped = false
+        player1Score = 0
+        player2Score = 0
+        
+        
         angleChanged(angleSlider)
         velocityChanged(velocitySlider)
         
@@ -54,6 +81,37 @@ class GameViewController: UIViewController {
         } else {
             return .all
         }
+    }
+    
+    func playerScored(player: Int) {
+        if player == 1 {
+            player1Score += 1
+        }
+        else {
+            player2Score += 1
+        }
+        
+        if player1Score == 3 {
+            playerNumber.text = "PLAYER 1 WINS"
+            stopGame()
+        }
+        else if player2Score == 3 {
+            playerNumber.text = "PLAYER 2 WINS"
+            stopGame()
+        }
+    }
+    
+    func gameControls(isHidden: Bool) {
+        angleSlider.isHidden = isHidden
+        angleLabel.isHidden = isHidden
+        velocitySlider.isHidden = isHidden
+        velocityLabel.isHidden = isHidden
+        launchButton.isHidden = isHidden
+    }
+    
+    func stopGame() {
+        gameControls(isHidden: true)
+        gameStopped = true
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -96,5 +154,12 @@ class GameViewController: UIViewController {
         velocityLabel.isHidden = false
 
         launchButton.isHidden = false
+    }
+    
+    @IBAction func newGameAction(_ sender: Any) {
+        gameStopped = false
+        player1Score = 0
+        player2Score = 0
+        currentGame?.newGame()
     }
 }
