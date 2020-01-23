@@ -10,8 +10,7 @@ import UIKit
 
 class SelectionViewController: UITableViewController {
 	var items = [String]() // this is the array that will store the filenames to load
-	var viewControllers = [UIViewController]() // create a cache of the detail view controllers for faster loading
-	var dirty = false
+    var dirty = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +24,9 @@ class SelectionViewController: UITableViewController {
 
 		// load all the JPEGs into our array
 		let fm = FileManager.default
+        guard let path = Bundle.main.resourcePath else { return }
 
-		if let tempItems = try? fm.contentsOfDirectory(atPath: Bundle.main.resourcePath!) {
+		if let tempItems = try? fm.contentsOfDirectory(atPath: path) {
 			for item in tempItems {
 				if item.range(of: "Large") != nil {
 					items.append(item)
@@ -63,8 +63,10 @@ class SelectionViewController: UITableViewController {
 		// find the image for this cell, and load its thumbnail
 		let currentImage = items[indexPath.row % items.count]
 		let imageRootName = currentImage.replacingOccurrences(of: "Large", with: "Thumb")
-		let path = Bundle.main.path(forResource: imageRootName, ofType: nil)!
-		let original = UIImage(contentsOfFile: path)!
+        
+        // challenge #1
+        guard let path = Bundle.main.path(forResource: imageRootName, ofType: nil) else { fatalError() }
+        guard let original = UIImage(contentsOfFile: path) else { fatalError() }
 
         let renderRect = CGRect(origin: .zero, size: CGSize(width: 90, height: 90))
         let renderer = UIGraphicsImageRenderer(size: renderRect.size)
@@ -101,7 +103,6 @@ class SelectionViewController: UITableViewController {
 		dirty = false
 
 		// add to our view controller cache and show
-		viewControllers.append(vc)
 		navigationController!.pushViewController(vc, animated: true)
 	}
 }
