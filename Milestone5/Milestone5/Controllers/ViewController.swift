@@ -14,7 +14,7 @@ class ViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let game = Concentration()
-        cards = game.shuffle()
+        cards = game.shuffle(4)
         
     }
     

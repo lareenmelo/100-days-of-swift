@@ -11,13 +11,19 @@ import Foundation
 class Concentration {
     var pairs = [Card]()
     
-    func shuffle() -> [Card] {
-        let emojis = Emoji.allCases
-        
+    // shuffle with # of pairs
+    func shuffle(_ numberOfPairs: Int) -> [Card] {
+        var emojis = Emoji.allCases
         var card: Card
-        for emoji in emojis {
+        
+        for _ in 1...numberOfPairs {
+            let randomEmojiIndex = Int.random(in: 0..<emojis.count)
+            
+            let emoji = emojis[randomEmojiIndex]
             card = Card(with: emoji)
             pairs += [card, card]
+            
+            emojis.remove(at: randomEmojiIndex)
         }
         
         return pairs.shuffled()
