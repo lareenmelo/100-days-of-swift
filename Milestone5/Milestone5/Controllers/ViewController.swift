@@ -9,10 +9,12 @@
 import UIKit
 
 class ViewController: UICollectionViewController {
-    let emojis = ["😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "☺️", "😊", "😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "☺️", "😊"]
+    var cards =  [Card]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let game = Concentration()
+        cards = game.shuffle()
         
     }
     
@@ -21,13 +23,14 @@ class ViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return emojis.count
+        return cards.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as? CardCollectionViewCell else { fatalError("Could not dequeue cell") }
         
-        cell.emoji.text = emojis[indexPath.row]
+        let card = cards[indexPath.row]
+        cell.configure(card)
         
         return cell
     }

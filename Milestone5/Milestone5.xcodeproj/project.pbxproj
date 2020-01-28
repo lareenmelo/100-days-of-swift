@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5790276B23E0C99F007DF0ED /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790276A23E0C99F007DF0ED /* CardCollectionViewCell.swift */; };
+		5790277123E0D7B1007DF0ED /* Concentration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790277023E0D7B1007DF0ED /* Concentration.swift */; };
+		5790277323E0D7E1007DF0ED /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790277223E0D7E1007DF0ED /* Emoji.swift */; };
+		5790277523E0D921007DF0ED /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790277423E0D921007DF0ED /* Card.swift */; };
 		57E250C023DBDA68008D79E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E250BF23DBDA68008D79E9 /* AppDelegate.swift */; };
 		57E250C223DBDA68008D79E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E250C123DBDA68008D79E9 /* SceneDelegate.swift */; };
 		57E250C423DBDA68008D79E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E250C323DBDA68008D79E9 /* ViewController.swift */; };
@@ -18,6 +21,9 @@
 
 /* Begin PBXFileReference section */
 		5790276A23E0C99F007DF0ED /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
+		5790277023E0D7B1007DF0ED /* Concentration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concentration.swift; sourceTree = "<group>"; };
+		5790277223E0D7E1007DF0ED /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
+		5790277423E0D921007DF0ED /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		57E250BC23DBDA68008D79E9 /* Milestone5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Milestone5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57E250BF23DBDA68008D79E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57E250C123DBDA68008D79E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +75,9 @@
 		5790276F23E0D6A9007DF0ED /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5790277023E0D7B1007DF0ED /* Concentration.swift */,
+				5790277223E0D7E1007DF0ED /* Emoji.swift */,
+				5790277423E0D921007DF0ED /* Card.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -173,7 +182,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5790277323E0D7E1007DF0ED /* Emoji.swift in Sources */,
 				5790276B23E0C99F007DF0ED /* CardCollectionViewCell.swift in Sources */,
+				5790277523E0D921007DF0ED /* Card.swift in Sources */,
+				5790277123E0D7B1007DF0ED /* Concentration.swift in Sources */,
 				57E250C423DBDA68008D79E9 /* ViewController.swift in Sources */,
 				57E250C023DBDA68008D79E9 /* AppDelegate.swift in Sources */,
 				57E250C223DBDA68008D79E9 /* SceneDelegate.swift in Sources */,

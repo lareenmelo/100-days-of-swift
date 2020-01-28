@@ -11,5 +11,8 @@ import UIKit
 class CardCollectionViewCell: UICollectionViewCell {
     @IBOutlet var emoji: UILabel!
     
-//    func configure emoji or empty it out depending on state?
+    func configure(_ card: Card) {
+        emoji.text = card.emoji.rawValue
+        
+    }
 }
