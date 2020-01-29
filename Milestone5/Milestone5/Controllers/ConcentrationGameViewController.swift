@@ -9,6 +9,8 @@
 import UIKit
 
 class ConcentrationGameViewController: UICollectionViewController {
+    
+    @IBOutlet var cardBackImage: UIImageView!
     var cards =  [Card]()
     let pairs = 3
     
@@ -35,6 +37,13 @@ class ConcentrationGameViewController: UICollectionViewController {
         cell.configure(card)
         
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // cell.flip
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CardCollectionViewCell else { return }
+        
+        cell.flip()
     }
 }
 

@@ -29,19 +29,29 @@
                                     <rect key="frame" x="0.0" y="0.0" width="80" height="90"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jy0-7K-JCb">
+                                            <rect key="frame" x="8" y="8" width="64" height="74"/>
+                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WG6-3R-74d">
-                                            <rect key="frame" x="19" y="40" width="42" height="21"/>
+                                            <rect key="frame" x="19" y="34.5" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="WG6-3R-74d" firstAttribute="centerX" secondItem="xh2-5o-OiO" secondAttribute="centerX" id="7Gg-8E-T4E"/>
-                                        <constraint firstItem="WG6-3R-74d" firstAttribute="top" secondItem="xh2-5o-OiO" secondAttribute="top" constant="40" id="RP9-Fy-ALm"/>
+                                        <constraint firstItem="Jy0-7K-JCb" firstAttribute="top" secondItem="xh2-5o-OiO" secondAttribute="top" constant="8" id="DJf-a9-Qj7"/>
+                                        <constraint firstItem="WG6-3R-74d" firstAttribute="centerX" secondItem="xh2-5o-OiO" secondAttribute="centerX" id="VQz-Y5-Twa"/>
+                                        <constraint firstItem="Jy0-7K-JCb" firstAttribute="centerX" secondItem="xh2-5o-OiO" secondAttribute="centerX" id="Y7t-iU-xvM"/>
+                                        <constraint firstItem="WG6-3R-74d" firstAttribute="centerY" secondItem="xh2-5o-OiO" secondAttribute="centerY" id="mJg-lm-uUc"/>
+                                        <constraint firstItem="Jy0-7K-JCb" firstAttribute="leading" secondItem="xh2-5o-OiO" secondAttribute="leading" constant="8" id="qeZ-q5-B1Z"/>
+                                        <constraint firstAttribute="trailing" secondItem="Jy0-7K-JCb" secondAttribute="trailing" constant="8" id="suG-sT-WUz"/>
+                                        <constraint firstAttribute="bottom" secondItem="Jy0-7K-JCb" secondAttribute="bottom" constant="8" id="tDZ-ec-qGd"/>
+                                        <constraint firstItem="Jy0-7K-JCb" firstAttribute="centerY" secondItem="xh2-5o-OiO" secondAttribute="centerY" id="yWQ-4k-4c0"/>
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <connections>
+                                    <outlet property="cardImage" destination="Jy0-7K-JCb" id="uGr-qv-qdT"/>
                                     <outlet property="emoji" destination="WG6-3R-74d" id="lu0-wG-KOn"/>
                                 </connections>
                             </collectionViewCell>
