@@ -9,9 +9,10 @@
 import Foundation
 
 class Concentration {
+    // FIXME: set emoji theme.
     var pairs = [Card]()
-    
-    // shuffle with # of pairs
+    // FIXME: limit the number of pairs to UI space
+    // && number of emoji cases (unless we'd like to apply a different logic to that.
     func shuffle(_ numberOfPairs: Int) -> [Card] {
         var emojis = Emoji.allCases
         var card: Card

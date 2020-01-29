@@ -11,9 +11,9 @@
 		5790277123E0D7B1007DF0ED /* Concentration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790277023E0D7B1007DF0ED /* Concentration.swift */; };
 		5790277323E0D7E1007DF0ED /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790277223E0D7E1007DF0ED /* Emoji.swift */; };
 		5790277523E0D921007DF0ED /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790277423E0D921007DF0ED /* Card.swift */; };
+		5790277723E0F0EC007DF0ED /* ConcentrationGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790277623E0F0EC007DF0ED /* ConcentrationGameViewController.swift */; };
 		57E250C023DBDA68008D79E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E250BF23DBDA68008D79E9 /* AppDelegate.swift */; };
 		57E250C223DBDA68008D79E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E250C123DBDA68008D79E9 /* SceneDelegate.swift */; };
-		57E250C423DBDA68008D79E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E250C323DBDA68008D79E9 /* ViewController.swift */; };
 		57E250C723DBDA68008D79E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57E250C523DBDA68008D79E9 /* Main.storyboard */; };
 		57E250C923DBDA6B008D79E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57E250C823DBDA6B008D79E9 /* Assets.xcassets */; };
 		57E250CC23DBDA6B008D79E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57E250CA23DBDA6B008D79E9 /* LaunchScreen.storyboard */; };
@@ -24,10 +24,10 @@
 		5790277023E0D7B1007DF0ED /* Concentration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concentration.swift; sourceTree = "<group>"; };
 		5790277223E0D7E1007DF0ED /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		5790277423E0D921007DF0ED /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		5790277623E0F0EC007DF0ED /* ConcentrationGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcentrationGameViewController.swift; sourceTree = "<group>"; };
 		57E250BC23DBDA68008D79E9 /* Milestone5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Milestone5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57E250BF23DBDA68008D79E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57E250C123DBDA68008D79E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		57E250C323DBDA68008D79E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		57E250C623DBDA68008D79E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		57E250C823DBDA6B008D79E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57E250CB23DBDA6B008D79E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,7 +58,7 @@
 		5790276D23E0D69A007DF0ED /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				57E250C323DBDA68008D79E9 /* ViewController.swift */,
+				5790277623E0F0EC007DF0ED /* ConcentrationGameViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -182,11 +182,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5790277723E0F0EC007DF0ED /* ConcentrationGameViewController.swift in Sources */,
 				5790277323E0D7E1007DF0ED /* Emoji.swift in Sources */,
 				5790276B23E0C99F007DF0ED /* CardCollectionViewCell.swift in Sources */,
 				5790277523E0D921007DF0ED /* Card.swift in Sources */,
 				5790277123E0D7B1007DF0ED /* Concentration.swift in Sources */,
-				57E250C423DBDA68008D79E9 /* ViewController.swift in Sources */,
 				57E250C023DBDA68008D79E9 /* AppDelegate.swift in Sources */,
 				57E250C223DBDA68008D79E9 /* SceneDelegate.swift in Sources */,
 			);

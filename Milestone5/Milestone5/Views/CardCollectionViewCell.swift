@@ -13,6 +13,8 @@ class CardCollectionViewCell: UICollectionViewCell {
     
     func configure(_ card: Card) {
         emoji.text = card.emoji.rawValue
+//        cell.background = uicoller
+        backgroundColor = UIColor.red
         
     }
 }
