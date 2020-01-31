@@ -19,19 +19,22 @@ class CardCollectionViewCell: UICollectionViewCell {
         self.card = card
         emoji.text = card.emoji.rawValue
         emoji.isHidden = true
-
+        
     }
     
     func flip() {
-        if card.state {
-            UIView.transition(from: emoji, to: cardImage, duration: 0.5, options: .transitionFlipFromLeft, completion: nil)
-            emoji.isHidden = true
-            
-        } else {
-            UIView.transition(from: cardImage, to: emoji, duration: 0.5, options: .transitionFlipFromLeft, completion: nil)
-            emoji.isHidden = false
-        }
+        UIView.transition(from: cardImage, to: emoji, duration: 0.5, options: .transitionFlipFromLeft, completion: nil)
+        emoji.isHidden = false
         
+        card.state.toggle()
+        
+    }
+    
+    func flipBack() {
+        
+        UIView.transition(from: emoji, to: cardImage, duration: 0.5, options: .transitionFlipFromLeft, completion: nil)
+        emoji.isHidden = true
+
         card.state.toggle()
 
     }

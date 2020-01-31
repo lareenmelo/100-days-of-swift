@@ -13,6 +13,7 @@ class ConcentrationGameViewController: UICollectionViewController {
     @IBOutlet var cardBackImage: UIImageView!
     var cards =  [Card]()
     let pairs = 3
+    var cardsFacingUp = [CardCollectionViewCell]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,10 +41,22 @@ class ConcentrationGameViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // cell.flip
         guard let cell = collectionView.cellForItem(at: indexPath) as? CardCollectionViewCell else { return }
         
-        cell.flip()
+        if cell.card.state == false {
+            cell.flip()
+            cardsFacingUp.append(cell)
+            
+            if cardsFacingUp.count == 2 {
+                if cardsFacingUp[0].emoji.text != cardsFacingUp[1].emoji.text {
+                    for card in cardsFacingUp {
+                        card.flipBack()
+                    }
+                }
+                
+                cardsFacingUp = [CardCollectionViewCell]()
+            }
+        }
     }
 }
 
@@ -61,7 +74,7 @@ extension ConcentrationGameViewController: UICollectionViewDelegateFlowLayout {
         
         let width = collectionSize.width / numberOfColumns
         let height = (collectionSize.height - (navigationItemHeight + statusBar)) / numberOfRows
-            
+        
         return CGSize(width: width, height: height)
     }
     
