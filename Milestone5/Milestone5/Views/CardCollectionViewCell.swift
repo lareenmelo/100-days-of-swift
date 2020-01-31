@@ -38,4 +38,9 @@ class CardCollectionViewCell: UICollectionViewCell {
         card.state.toggle()
 
     }
+    
+    func disable() {
+        cardImage.isHidden = true
+        emoji.isHidden = true
+    }
 }

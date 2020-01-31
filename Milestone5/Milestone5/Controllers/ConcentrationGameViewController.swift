@@ -52,6 +52,10 @@ class ConcentrationGameViewController: UICollectionViewController {
                     for card in cardsFacingUp {
                         card.flipBack()
                     }
+                } else {
+                    // FIXME: disable simultaneously
+                    cardsFacingUp[0].disable()
+                    cardsFacingUp[1].disable()
                 }
                 
                 cardsFacingUp = [CardCollectionViewCell]()
