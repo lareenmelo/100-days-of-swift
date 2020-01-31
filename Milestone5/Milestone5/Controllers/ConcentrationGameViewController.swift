@@ -49,9 +49,10 @@ class ConcentrationGameViewController: UICollectionViewController {
             
             if cardsFacingUp.count == 2 {
                 if cardsFacingUp[0].emoji.text != cardsFacingUp[1].emoji.text {
-                    for card in cardsFacingUp {
+                    for card in self.cardsFacingUp {
                         card.flipBack()
                     }
+                    
                 } else {
                     // FIXME: disable simultaneously
                     cardsFacingUp[0].disable()
@@ -68,25 +69,34 @@ extension ConcentrationGameViewController: UICollectionViewDelegateFlowLayout {
     // FIXME: Refactor me pls
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let collectionSize = collectionView.frame.size
-        let numberOfColumns = CGFloat(pairs)
-        let numberOfRows = CGFloat(2.0)
-        guard let navigationItemHeight = navigationController?.navigationBar.frame.height else { return CGSize(width: 0.0, height: 0.0) }
+        guard let navigationItemHeight = navigationController?.navigationBar.frame.height else {
+            return CGSize(width: 0.0, height: 0.0)
+        }
+        guard let statusBarHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height else {
+            return CGSize(width: 0.0, height: 0.0)
+        }
+        let spacingBetweenCells = 16
+        let collectionWidth = collectionView.frame.size.width
+        let collectionHeight = collectionView.frame.size.height - (navigationItemHeight + statusBarHeight)
+        // FIXME: create a better size struct
+        let numberOfRows = CGFloat(3)
+        let numberOfColumns = CGFloat(2)
         
+        let cellHeight = (collectionHeight - (CGFloat(spacingBetweenCells) * numberOfRows)) / numberOfRows
+        let cellWidth = (collectionWidth - (CGFloat(spacingBetweenCells) * numberOfColumns)) / numberOfColumns
         
-        guard let statusBar = view.window?.windowScene?.statusBarManager?.statusBarFrame.size.height else { return CGSize(width: 0.0, height: 0.0) }
-        
-        let width = collectionSize.width / numberOfColumns
-        let height = (collectionSize.height - (navigationItemHeight + statusBar)) / numberOfRows
-        
-        return CGSize(width: width, height: height)
+        return CGSize(width: cellWidth, height: cellHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 16
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 16
     }
 }

@@ -15,6 +15,8 @@ class CardCollectionViewCell: UICollectionViewCell {
     
     func configure(_ card: Card) {
         cardImage.image = UIImage(named: "card_back")
+        cardImage.layer.cornerRadius = 16.0
+        cardImage.clipsToBounds = true
         
         self.card = card
         emoji.text = card.emoji.rawValue
@@ -23,7 +25,7 @@ class CardCollectionViewCell: UICollectionViewCell {
     }
     
     func flip() {
-        UIView.transition(from: cardImage, to: emoji, duration: 0.5, options: .transitionFlipFromLeft, completion: nil)
+        UIView.transition(from: cardImage, to: emoji, duration: 0.5, options: [.transitionFlipFromLeft, .showHideTransitionViews], completion: nil)
         emoji.isHidden = false
         
         card.state.toggle()
@@ -31,16 +33,23 @@ class CardCollectionViewCell: UICollectionViewCell {
     }
     
     func flipBack() {
+        let pause = DispatchTime.now() + .milliseconds(700)
         
-        UIView.transition(from: emoji, to: cardImage, duration: 0.5, options: .transitionFlipFromLeft, completion: nil)
-        emoji.isHidden = true
-
-        card.state.toggle()
-
+        DispatchQueue.main.asyncAfter(deadline: pause) {
+            
+            UIView.transition(from: self.emoji, to: self.cardImage, duration: 0.5, options: [.transitionFlipFromLeft, .showHideTransitionViews], completion: nil)
+            self.emoji.isHidden = true
+            
+            self.card.state.toggle()
+        }
     }
     
     func disable() {
-        cardImage.isHidden = true
-        emoji.isHidden = true
+        let pause = DispatchTime.now() + .milliseconds(700)
+        
+        DispatchQueue.main.asyncAfter(deadline: pause) {
+            self.cardImage.isHidden = true
+            self.emoji.isHidden = true
+        }
     }
 }
