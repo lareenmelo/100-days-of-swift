@@ -10,11 +10,19 @@ import Foundation
 
 struct Card {
     var emoji: Emoji
-    //FIXME: state has to be a custom enum type (face up, face down, match)
-    var state: Bool
+    var status: Status
+    var id: Int?
     
     init(with emoji: Emoji) {
         self.emoji = emoji
-        state = false
+        status = Status.facingDown
     }
+}
+
+
+enum Status: String {
+    case facingUp
+    case facingDown
+    case matched
+    
 }

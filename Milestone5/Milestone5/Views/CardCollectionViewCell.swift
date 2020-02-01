@@ -28,7 +28,6 @@ class CardCollectionViewCell: UICollectionViewCell {
         UIView.transition(from: cardImage, to: emoji, duration: 0.5, options: [.transitionFlipFromLeft, .showHideTransitionViews], completion: nil)
         emoji.isHidden = false
         
-        card.state.toggle()
         
     }
     
@@ -39,7 +38,6 @@ class CardCollectionViewCell: UICollectionViewCell {
             UIView.transition(from: self.emoji, to: self.cardImage, duration: 0.5, options: [.transitionFlipFromLeft, .showHideTransitionViews], completion: nil)
             self.emoji.isHidden = true
             
-            self.card.state.toggle()
         }
     }
     

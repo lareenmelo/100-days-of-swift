@@ -9,18 +9,34 @@
 import UIKit
 
 class ConcentrationGameViewController: UICollectionViewController {
-    
     @IBOutlet var cardBackImage: UIImageView!
+    
+    var cardsFacingUp = [CardCollectionViewCell]()
+    var game: Concentration!
+    
+    
+    
     var cards =  [Card]()
     let pairs = 3
-    var cardsFacingUp = [CardCollectionViewCell]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let game = Concentration(with: 4)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Game", style: .done, target: self, action: #selector(newGame))
+        
+        title = "Magical Concentration Game"
+        game = Concentration(with: 3)
         cards = game.pairs
         
+    }
+    
+    @objc func newGame() {
+        DispatchQueue.main.async { [weak self] in
+            self?.game.newGame()
+            self?.cards = (self?.game.pairs)!
+            self?.collectionView.reloadData()
+            
+        }
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -43,20 +59,28 @@ class ConcentrationGameViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? CardCollectionViewCell else { return }
         
-        if cell.card.state == false {
+        var status = cell.card.status
+                
+        if status == .facingDown {
             cell.flip()
             cardsFacingUp.append(cell)
             
+            status = game.select(card: cell.card)
+            cell.card.status = status
+
             if cardsFacingUp.count == 2 {
-                if cardsFacingUp[0].emoji.text != cardsFacingUp[1].emoji.text {
-                    for card in self.cardsFacingUp {
-                        card.flipBack()
-                    }
-                    
-                } else {
-                    // FIXME: disable simultaneously
+                if status == .matched {
                     cardsFacingUp[0].disable()
+                    cardsFacingUp[0].card.status = .matched
                     cardsFacingUp[1].disable()
+                    cardsFacingUp[1].card.status = .matched
+
+                } else {
+                    cardsFacingUp[0].flipBack()
+                    cardsFacingUp[0].card.status = .facingDown
+                    cardsFacingUp[1].flipBack()
+                    cardsFacingUp[1].card.status = .facingDown
+
                 }
                 
                 cardsFacingUp = [CardCollectionViewCell]()

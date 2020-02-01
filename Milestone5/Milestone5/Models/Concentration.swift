@@ -11,23 +11,56 @@ import Foundation
 class Concentration {
     // FIXME: set emoji theme.
     var pairs: [Card]!
-    
+    var numberOfPairs: Int
+    private var selectedCards = [Card]()
+
     init(with numberOfPairs: Int) {
-        self.pairs = self.shuffle(numberOfPairs)
+        self.numberOfPairs = numberOfPairs
+        self.shuffle(numberOfPairs)
         
     }
     
+    private func match(_ first: Card, _ second: Card) -> Bool {
+        return first.emoji.rawValue == second.emoji.rawValue
+        
+    }
     
-    // shuffles new cards according to theme
-    // choses a card -> returns cards state
+    func select(card: Card) -> Status {
+        var status = card.status
+        
+        if status == .facingDown {
+            status = .facingUp
+            selectedCards.append(card)
+            
+            if selectedCards.count == 2 {
+                let firstCard = selectedCards[0]
+                let secondCard = selectedCards[1]
+                
+                if match(firstCard, secondCard) {
+                    status = .matched
+
+                } else {
+                    status = .facingDown
+                    
+                }
+                
+                selectedCards = [Card]()
+
+            }
+        }
+
+        
+        return status
+        
+    }
     
+    func newGame() {
+        shuffle(numberOfPairs)
+        // change all cards status to facing downnnnn
+    }
     
-    
-    
-    
-    // FIXME: limit the number of pairs to UI space
-    // && number of emoji cases (unless we'd like to apply a different logic to that.
-    func shuffle(_ numberOfPairs: Int) -> [Card] {
+    // FIXME: number of emoji cases (unless we'd like to apply a different logic to that.
+    func shuffle(_ numberOfPairs: Int) {
         var emojis = Emoji.allCases
         var card: Card
         var cards = [Card]()
@@ -42,7 +75,7 @@ class Concentration {
             emojis.remove(at: randomEmojiIndex)
         }
         
-        return cards.shuffled()
-        
+        pairs = cards
+//        pairs = cards.shuffled()
     }
 }
