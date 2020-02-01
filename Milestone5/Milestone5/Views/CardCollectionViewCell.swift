@@ -34,9 +34,9 @@ class CardCollectionViewCell: UICollectionViewCell {
     func flipBack() {
         let pause = DispatchTime.now() + .milliseconds(700)
         
-        DispatchQueue.main.asyncAfter(deadline: pause) {
-            UIView.transition(from: self.emoji, to: self.cardImage, duration: 0.5, options: [.transitionFlipFromLeft, .showHideTransitionViews], completion: nil)
-            self.emoji.isHidden = true
+        DispatchQueue.main.asyncAfter(deadline: pause) { [weak self] in
+            UIView.transition(from: self!.emoji, to: self!.cardImage, duration: 0.5, options: [.transitionFlipFromLeft, .showHideTransitionViews], completion: nil)
+            self?.emoji.isHidden = true
             
         }
     }
@@ -44,9 +44,9 @@ class CardCollectionViewCell: UICollectionViewCell {
     func disable() {
         let pause = DispatchTime.now() + .milliseconds(700)
         
-        DispatchQueue.main.asyncAfter(deadline: pause) {
-            self.cardImage.isHidden = true
-            self.emoji.isHidden = true
+        DispatchQueue.main.asyncAfter(deadline: pause) { [weak self] in
+            self?.cardImage.isHidden = true
+            self?.emoji.isHidden = true
         }
     }
 }

@@ -75,7 +75,6 @@ class Concentration {
             emojis.remove(at: randomEmojiIndex)
         }
         
-        pairs = cards
-//        pairs = cards.shuffled()
+        pairs = cards.shuffled()
     }
 }
