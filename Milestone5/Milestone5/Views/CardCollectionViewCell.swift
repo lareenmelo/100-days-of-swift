@@ -17,6 +17,7 @@ class CardCollectionViewCell: UICollectionViewCell {
         cardImage.image = UIImage(named: "card_back")
         cardImage.layer.cornerRadius = 16.0
         cardImage.clipsToBounds = true
+        cardImage.isHidden = false
         
         self.card = card
         emoji.text = card.emoji.rawValue

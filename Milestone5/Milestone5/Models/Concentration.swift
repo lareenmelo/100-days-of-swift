@@ -56,7 +56,6 @@ class Concentration {
     
     func newGame() {
         shuffle(numberOfPairs)
-        // change all cards status to facing downnnnn
     }
     
     // FIXME: number of emoji cases (unless we'd like to apply a different logic to that.
