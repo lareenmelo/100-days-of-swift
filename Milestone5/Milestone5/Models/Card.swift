@@ -10,7 +10,7 @@ import Foundation
 
 struct Card {
     var emoji: Emoji
-    //FIXME: state has to be a custom enum type (face up, face down, disabled)
+    //FIXME: state has to be a custom enum type (face up, face down, match)
     var state: Bool
     
     init(with emoji: Emoji) {

@@ -10,24 +10,39 @@ import Foundation
 
 class Concentration {
     // FIXME: set emoji theme.
-    var pairs = [Card]()
+    var pairs: [Card]!
+    
+    init(with numberOfPairs: Int) {
+        self.pairs = self.shuffle(numberOfPairs)
+        
+    }
+    
+    
+    // shuffles new cards according to theme
+    // choses a card -> returns cards state
+    
+    
+    
+    
+    
     // FIXME: limit the number of pairs to UI space
     // && number of emoji cases (unless we'd like to apply a different logic to that.
     func shuffle(_ numberOfPairs: Int) -> [Card] {
         var emojis = Emoji.allCases
         var card: Card
+        var cards = [Card]()
         
         for _ in 1...numberOfPairs {
             let randomEmojiIndex = Int.random(in: 0..<emojis.count)
             
             let emoji = emojis[randomEmojiIndex]
             card = Card(with: emoji)
-            pairs += [card, card]
+            cards += [card, card]
             
             emojis.remove(at: randomEmojiIndex)
         }
         
-        return pairs.shuffled()
+        return cards.shuffled()
         
     }
 }

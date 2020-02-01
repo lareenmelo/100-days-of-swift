@@ -36,7 +36,6 @@ class CardCollectionViewCell: UICollectionViewCell {
         let pause = DispatchTime.now() + .milliseconds(700)
         
         DispatchQueue.main.asyncAfter(deadline: pause) {
-            
             UIView.transition(from: self.emoji, to: self.cardImage, duration: 0.5, options: [.transitionFlipFromLeft, .showHideTransitionViews], completion: nil)
             self.emoji.isHidden = true
             
