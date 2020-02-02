@@ -13,18 +13,21 @@ class ConcentrationGameViewController: UICollectionViewController {
     
     var cardsFacingUp = [CardCollectionViewCell]()
     var game: Concentration!
-    
-    
-    
     var cards =  [Card]()
+    
     let pairs = 3
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Game", style: .done, target: self, action: #selector(newGame))
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Game", style: .done, target: self, action: #selector(newGame))
         
-        title = "Magical Concentration Game"
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "New Game", style: .done, target: self, action: #selector(newGame))
+
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "New Game", style: .done, target: self, action: #selector(newGame)), UIBarButtonItem(title: "Settings", style: .done, target: self, action: #selector(showSettings))]
+        
+        title = "Concentration Game"
+        navigationController?.navigationBar.prefersLargeTitles = true
         game = Concentration(with: 3)
         cards = game.pairs
         
@@ -39,6 +42,18 @@ class ConcentrationGameViewController: UICollectionViewController {
         }
     }
     
+    @objc func showSettings() {
+        print("todo")
+        // show GameSettingsTableViewController aka: settingsViewController
+        let bundle = Bundle(for: ConcentrationGameViewController.self)
+        let storyboard = UIStoryboard(name: "Main", bundle: bundle)
+        guard let settingsViewController = storyboard.instantiateViewController(identifier: "settingsViewController") as? GameSettingsTableViewController else {
+            fatalError()
+        }
+        
+        present(settingsViewController, animated: true)
+    }
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -51,6 +66,7 @@ class ConcentrationGameViewController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Card", for: indexPath) as? CardCollectionViewCell else { fatalError("Could not dequeue cell") }
         
         let card = cards[indexPath.row]
+        
         cell.configure(card)
         
         return cell
@@ -89,6 +105,7 @@ class ConcentrationGameViewController: UICollectionViewController {
     }
 }
 
+//GET OUT!!!!
 extension ConcentrationGameViewController: UICollectionViewDelegateFlowLayout {
     // FIXME: Refactor me pls
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

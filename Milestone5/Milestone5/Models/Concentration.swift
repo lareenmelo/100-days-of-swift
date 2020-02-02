@@ -49,13 +49,13 @@ class Concentration {
             }
         }
 
-        
         return status
         
     }
     
     func newGame() {
         shuffle(numberOfPairs)
+        
     }
     
     // FIXME: number of emoji cases (unless we'd like to apply a different logic to that.

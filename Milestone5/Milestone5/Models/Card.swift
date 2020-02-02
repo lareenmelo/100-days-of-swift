@@ -18,11 +18,3 @@ struct Card {
         status = Status.facingDown
     }
 }
-
-
-enum Status: String {
-    case facingUp
-    case facingDown
-    case matched
-    
-}
