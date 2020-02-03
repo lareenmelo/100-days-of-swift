@@ -10,7 +10,6 @@ import UIKit
 
 class ConcentrationGameViewController: UICollectionViewController {
     @IBOutlet var cardBackImage: UIImageView!
-    
     var cardsFacingUp = [CardCollectionViewCell]()
     var game: Concentration!
     var cards =  [Card]()
@@ -19,10 +18,6 @@ class ConcentrationGameViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Game", style: .done, target: self, action: #selector(newGame))
-        
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "New Game", style: .done, target: self, action: #selector(newGame))
 
         navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "New Game", style: .done, target: self, action: #selector(newGame)), UIBarButtonItem(title: "Settings", style: .done, target: self, action: #selector(showSettings))]
         
@@ -43,15 +38,13 @@ class ConcentrationGameViewController: UICollectionViewController {
     }
     
     @objc func showSettings() {
-        print("todo")
-        // show GameSettingsTableViewController aka: settingsViewController
         let bundle = Bundle(for: ConcentrationGameViewController.self)
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
-        guard let settingsViewController = storyboard.instantiateViewController(identifier: "settingsViewController") as? GameSettingsTableViewController else {
+        guard let settingsViewController = storyboard.instantiateViewController(identifier: "settingsViewController") as? GameSettingsViewController else {
             fatalError()
         }
         
-        present(settingsViewController, animated: true)
+        navigationController?.pushViewController(settingsViewController, animated: true)
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {

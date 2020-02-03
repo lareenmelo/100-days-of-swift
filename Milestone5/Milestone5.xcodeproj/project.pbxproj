@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		571D830523E7B5AA00D28577 /* GameSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571D830423E7B5AA00D28577 /* GameSettingsViewController.swift */; };
 		57693C5923E63E4C00584274 /* GameSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57693C5823E63E4C00584274 /* GameSettingsTableViewController.swift */; };
 		57693C5B23E63F6B00584274 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57693C5A23E63F6B00584274 /* Status.swift */; };
 		5790276B23E0C99F007DF0ED /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790276A23E0C99F007DF0ED /* CardCollectionViewCell.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		571D830423E7B5AA00D28577 /* GameSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingsViewController.swift; sourceTree = "<group>"; };
 		57693C5823E63E4C00584274 /* GameSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingsTableViewController.swift; sourceTree = "<group>"; };
 		57693C5A23E63F6B00584274 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		5790276A23E0C99F007DF0ED /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			children = (
 				5790277623E0F0EC007DF0ED /* ConcentrationGameViewController.swift */,
 				57693C5823E63E4C00584274 /* GameSettingsTableViewController.swift */,
+				571D830423E7B5AA00D28577 /* GameSettingsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				5790276B23E0C99F007DF0ED /* CardCollectionViewCell.swift in Sources */,
 				5790277523E0D921007DF0ED /* Card.swift in Sources */,
 				57693C5B23E63F6B00584274 /* Status.swift in Sources */,
+				571D830523E7B5AA00D28577 /* GameSettingsViewController.swift in Sources */,
 				5790277123E0D7B1007DF0ED /* Concentration.swift in Sources */,
 				57E250C023DBDA68008D79E9 /* AppDelegate.swift in Sources */,
 				57E250C223DBDA68008D79E9 /* SceneDelegate.swift in Sources */,

@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -67,33 +68,59 @@
             </objects>
             <point key="canvasLocation" x="558" y="114"/>
         </scene>
-        <!--Game Settings Table View Controller-->
-        <scene sceneID="UL1-PC-UAD">
+        <!--Game Settings View Controller-->
+        <scene sceneID="3CN-i3-1Ca">
             <objects>
-                <tableViewController storyboardIdentifier="settingsViewController" id="LG7-go-EOK" customClass="GameSettingsTableViewController" customModule="Milestone5" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="-1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ipw-MT-PYj">
+                <viewController storyboardIdentifier="settingsViewController" id="6um-oe-jlh" customClass="GameSettingsViewController" customModule="Milestone5" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iQa-Cg-JsO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FE7-BA-sS0">
+                                <rect key="frame" x="0.0" y="91" width="414" height="771"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Configuration" id="yP8-FJ-wqx">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yP8-FJ-wqx" id="3f5-pd-5pp">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bcC-th-n5g">
+                                <rect key="frame" x="8" y="52" width="398" height="32"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                                <connections>
+                                    <action selector="settingsSectionSelected:" destination="6um-oe-jlh" eventType="valueChanged" id="bzO-d1-RuP"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Configuration" id="AlH-WC-GPW">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AlH-WC-GPW" id="mkw-WC-Jfz">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="LG7-go-EOK" id="qS6-Bg-34I"/>
-                            <outlet property="delegate" destination="LG7-go-EOK" id="mGV-Fj-7dj"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="u5b-7z-JYv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstItem="bcC-th-n5g" firstAttribute="leading" secondItem="sZh-28-q7A" secondAttribute="leading" constant="8" id="7y8-qv-dab"/>
+                            <constraint firstItem="FE7-BA-sS0" firstAttribute="leading" secondItem="sZh-28-q7A" secondAttribute="leading" id="KQo-CK-h80"/>
+                            <constraint firstItem="FE7-BA-sS0" firstAttribute="top" secondItem="bcC-th-n5g" secondAttribute="bottom" constant="8" id="S88-ov-PPV"/>
+                            <constraint firstItem="sZh-28-q7A" firstAttribute="trailing" secondItem="FE7-BA-sS0" secondAttribute="trailing" id="W7T-Ja-MfN"/>
+                            <constraint firstItem="sZh-28-q7A" firstAttribute="bottom" secondItem="FE7-BA-sS0" secondAttribute="bottom" id="as0-dk-Kpb"/>
+                            <constraint firstItem="sZh-28-q7A" firstAttribute="trailing" secondItem="bcC-th-n5g" secondAttribute="trailing" constant="8" id="kVk-SU-HRw"/>
+                            <constraint firstItem="bcC-th-n5g" firstAttribute="top" secondItem="sZh-28-q7A" secondAttribute="top" constant="8" id="ojQ-6Y-uvc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="sZh-28-q7A"/>
+                    </view>
+                    <connections>
+                        <outlet property="settingsSections" destination="bcC-th-n5g" id="BDT-GY-eeR"/>
+                        <outlet property="tableView" destination="FE7-BA-sS0" id="ZYT-vO-nF1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gzD-9H-4xu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1397" y="119"/>
+            <point key="canvasLocation" x="1439" y="114"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LLY-Hm-eCa">
