@@ -17,7 +17,7 @@ class GameSettingsViewController: UIViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
         
         title = "Settings"
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .never
         
         tableView.delegate = self
         tableView.dataSource = self
