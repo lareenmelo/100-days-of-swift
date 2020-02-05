@@ -14,10 +14,11 @@ class CardCollectionViewCell: UICollectionViewCell {
     var card: Card!
     
     func configure(_ card: Card) {
+        contentView.layer.cornerRadius = 16.0
+        contentView.clipsToBounds = true
+        contentView.isHidden = false
+        
         cardImage.image = UIImage(named: "card_back")
-        cardImage.layer.cornerRadius = 16.0
-        cardImage.clipsToBounds = true
-        cardImage.isHidden = false
         
         self.card = card
         emoji.text = card.emoji.rawValue
@@ -46,8 +47,7 @@ class CardCollectionViewCell: UICollectionViewCell {
         let pause = DispatchTime.now() + .milliseconds(700)
         
         DispatchQueue.main.asyncAfter(deadline: pause) { [weak self] in
-            self?.cardImage.isHidden = true
-            self?.emoji.isHidden = true
+            self?.contentView.isHidden = true
         }
     }
 }

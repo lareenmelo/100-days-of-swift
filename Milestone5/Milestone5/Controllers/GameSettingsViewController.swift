@@ -9,9 +9,11 @@
 import UIKit
 
 class GameSettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
     @IBOutlet var settingsSections: UISegmentedControl!
     @IBOutlet var tableView: UITableView!
+
+    let userDefaults = UserDefaults.standard
+    let numberOfCards = [2, 3, 4, 6]
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,18 +27,17 @@ class GameSettingsViewController: UIViewController, UITableViewDataSource, UITab
         settingsSections.selectedSegmentIndex = 0
         settingsSections.setTitle("Layout", forSegmentAt: 0)
         settingsSections.setTitle("Themes", forSegmentAt: 1)
-
+        
     }
     
     @IBAction func settingsSectionSelected(_ sender: Any) {
-//        guard let sender = sender as? UISegmentedControl else { return }
         tableView.reloadData()
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if settingsSections.selectedSegmentIndex == 0 {
-            return 5
+            return numberOfCards.count
         } else {
             return 7
         }
@@ -45,8 +46,19 @@ class GameSettingsViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Configuration") else { fatalError() }
         
-        cell.textLabel?.text = "\(indexPath)"
+        if settingsSections.selectedSegmentIndex == 0 {
+            cell.textLabel?.text = "\(numberOfCards[indexPath.row])"
+        } else {
+            cell.textLabel?.text = "\(indexPath)"
+
+        }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if settingsSections.selectedSegmentIndex == 0 {
+            userDefaults.set(numberOfCards[indexPath.row], forKey: "pairs")
+        }
     }
 }

@@ -14,18 +14,33 @@ class ConcentrationGameViewController: UICollectionViewController {
     var game: Concentration!
     var cards =  [Card]()
     
+    let userDefaults = UserDefaults.standard
+    
     let pairs = 3
+    var testPair = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "New Game", style: .done, target: self, action: #selector(newGame)), UIBarButtonItem(title: "Settings", style: .done, target: self, action: #selector(showSettings))]
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "New Game", style: .done, target: self, action: #selector(newGame))
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .done, target: self, action: #selector(showSettings))
         
         title = "Concentration Game"
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        
         game = Concentration(with: 3)
         cards = game.pairs
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        testPair = userDefaults.integer(forKey: "pairs")
+        
+        print(testPair)
     }
     
     @objc func newGame() {
