@@ -43,7 +43,6 @@ class ConcentrationGameViewController: UICollectionViewController {
         
         collectionView.reloadData()
 
-        print(pairs)
     }
     
     @objc func newGame() {
@@ -121,34 +120,34 @@ extension ConcentrationGameViewController: UICollectionViewDelegateFlowLayout {
     // FIXME: Refactor me pls
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        guard let navigationItemHeight = navigationController?.navigationBar.frame.height else {
-            return CGSize(width: 0.0, height: 0.0)
-        }
-        guard let statusBarHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height else {
-            return CGSize(width: 0.0, height: 0.0)
-        }
-        let spacingBetweenCells = 16
-        let collectionWidth = collectionView.frame.size.width
-        let collectionHeight = collectionView.frame.size.height - (navigationItemHeight + statusBarHeight)
-        // FIXME: create a better size struct
-        let numberOfRows = CGFloat(pairs)
-        let numberOfColumns = CGFloat(pairs)
+        let height = collectionView.bounds.size.height / CGFloat(6)
         
-        let cellHeight = (collectionHeight - (CGFloat(spacingBetweenCells) * numberOfRows)) / numberOfRows
-        let cellWidth = (collectionWidth - (CGFloat(spacingBetweenCells) * numberOfColumns)) / numberOfColumns
+        let width = collectionView.bounds.size.height / CGFloat(3)
         
-        return CGSize(width: cellWidth, height: cellHeight)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 16
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 16
+        
+        return CGSize(width: width, height: height)
+//
+//        guard let navigationItemHeight = navigationController?.navigationBar.frame.height else {
+//            return CGSize(width: 0.0, height: 0.0)
+//        }
+//        guard let statusBarHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height else {
+//            return CGSize(width: 0.0, height: 0.0)
+//        }
+//        let spacingBetweenCells = 8
+//        let collectionWidth = collectionView.frame.size.width
+//        let collectionHeight = collectionView.frame.size.height - (navigationItemHeight + statusBarHeight)
+//        // FIXME: create a better size struct
+//        let numberOfRows = CGFloat(4)
+//        let numberOfColumns = CGFloat(3)
+        
+        
+//        let marginsAndInsets = inset * 2 + collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right + minimumInteritemSpacing * CGFloat(cellsPerRow - 1)
+//         let itemWidth = ((collectionView.bounds.size.width - marginsAndInsets) / CGFloat(cellsPerRow)).rounded(.down)
+//         return CGSize(width: itemWidth, height: itemWidth)
+        
+//        let cellHeight = (collectionHeight - (CGFloat(spacingBetweenCells) * numberOfRows)) /  CGFloat(numberOfRows.rounded(.down))
+//        let cellWidth = (collectionWidth  - (CGFloat(spacingBetweenCells) * numberOfRows)) / CGFloat(numberOfColumns.rounded(.down))
+//
+//        return CGSize(width: cellWidth, height: cellHeight)
     }
 }

@@ -9,6 +9,7 @@
 import Foundation
 // FIXME: rename to "Theme"
 // MARK: point of having an emoji type is that later on we can add themed concentration games and even custom emojis.
+// FIXME: REPEAT EMOJIS
 enum Emoji: String, CaseIterable {
     case 😀
     case 😘
@@ -18,4 +19,10 @@ enum Emoji: String, CaseIterable {
     case 😭
     case 🚀
     case 👑
+    case 🙄
+    case 😇
+    case 🤯
+    case 🧠
+    case 😄
+    case 🥳
 }
