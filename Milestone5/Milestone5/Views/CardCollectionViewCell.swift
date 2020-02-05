@@ -19,6 +19,8 @@ class CardCollectionViewCell: UICollectionViewCell {
         contentView.isHidden = false
         
         cardImage.image = UIImage(named: "card_back")
+        cardImage.isHidden = false
+
         
         self.card = card
         emoji.text = card.emoji.rawValue

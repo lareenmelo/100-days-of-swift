@@ -16,8 +16,7 @@ class ConcentrationGameViewController: UICollectionViewController {
     
     let userDefaults = UserDefaults.standard
     
-    let pairs = 3
-    var testPair = 0
+    var pairs = 3
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +29,7 @@ class ConcentrationGameViewController: UICollectionViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         
-        game = Concentration(with: 3)
+        game = Concentration(with: pairs)
         cards = game.pairs
         
     }
@@ -38,9 +37,13 @@ class ConcentrationGameViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        testPair = userDefaults.integer(forKey: "pairs")
+        pairs = userDefaults.integer(forKey: "pairs")
+        game = Concentration(with: pairs)
+        cards = game.pairs
         
-        print(testPair)
+        collectionView.reloadData()
+
+        print(pairs)
     }
     
     @objc func newGame() {
@@ -128,8 +131,8 @@ extension ConcentrationGameViewController: UICollectionViewDelegateFlowLayout {
         let collectionWidth = collectionView.frame.size.width
         let collectionHeight = collectionView.frame.size.height - (navigationItemHeight + statusBarHeight)
         // FIXME: create a better size struct
-        let numberOfRows = CGFloat(3)
-        let numberOfColumns = CGFloat(2)
+        let numberOfRows = CGFloat(pairs)
+        let numberOfColumns = CGFloat(pairs)
         
         let cellHeight = (collectionHeight - (CGFloat(spacingBetweenCells) * numberOfRows)) / numberOfRows
         let cellWidth = (collectionWidth - (CGFloat(spacingBetweenCells) * numberOfColumns)) / numberOfColumns
